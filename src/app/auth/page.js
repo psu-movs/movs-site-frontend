@@ -1,9 +1,9 @@
-import Copyright from "@/app/auth/Copyright";
+import Form from "@/app/auth/Form";
 
 export default function AuthPage() {
   return (
     <main>
-      <Copyright />
+      <Form />
     </main>
   )
 }
