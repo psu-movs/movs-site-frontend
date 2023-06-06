@@ -13,6 +13,11 @@ const defaultTheme = createTheme(
       body1: { fontFamily: GoogleInterFont.style.fontFamily },
       body2: { fontFamily: GoogleInterFont.style.fontFamily },
     },
+    palette: {
+      primary: {
+        main: '#2148C0'
+      }
+    }
   },
   {} satisfies ThemeOptions
 );
