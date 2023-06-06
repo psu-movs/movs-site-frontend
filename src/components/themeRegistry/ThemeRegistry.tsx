@@ -1,19 +1,40 @@
 'use client';
 
 import * as React from 'react';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { NextAppDirEmotionCacheProvider } from './emotionCache';
-
+import createCache from '@emotion/cache';
+import { CssBaseline } from '@mui/material';
+import { CacheProvider } from '@emotion/react';
+import { useServerInsertedHTML } from 'next/navigation';
+import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import theme from './theme';
 
-export default function ThemeRegistry({ children }: { children: React.ReactNode }) {
+function ThemeRegistry({ children }: { children: React.ReactNode }) {
+  const [emotionCache] = React.useState(() => {
+    const cache = createCache({ key: 'css' });
+    cache.compat = true;
+    return cache;
+  });
+
+  useServerInsertedHTML(() => {
     return (
-        <React.Fragment>
-            <CssBaseline />
-            <NextAppDirEmotionCacheProvider options={{ key: 'mui' }}>
-                <ThemeProvider theme={theme}>{children}</ThemeProvider>
-            </NextAppDirEmotionCacheProvider>
-        </React.Fragment>
+      <style
+        data-emotion={`${emotionCache.key} ${Object.keys(emotionCache.inserted).join(' ')}`}
+        /* eslint-disable-next-line react/no-danger */
+        dangerouslySetInnerHTML={{
+          __html: Object.values(emotionCache.inserted).join(' '),
+        }}
+      />
     );
+  });
+
+  return (
+    <CacheProvider value={emotionCache}>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        {children}
+      </MuiThemeProvider>
+    </CacheProvider>
+  );
 }
+
+export default ThemeRegistry;

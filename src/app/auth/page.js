@@ -5,5 +5,5 @@ export default function AuthPage() {
     <main>
       <Form />
     </main>
-  )
+  );
 }
