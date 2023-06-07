@@ -23,7 +23,7 @@ export default function LoginForm() {
     >
       <Container maxWidth={"xs"}>
         <Stack spacing={3}>
-          <img src={"/logo.svg"} alt={"logo"} width={"60%"} />
+          <Link href={"../"}><img src={"/logo.svg"} alt={"logo"} width={"60%"} /></Link>
 
           <Typography variant="h4">Добро пожаловать</Typography>
 
@@ -55,17 +55,23 @@ export default function LoginForm() {
               />
             </FormGroup>
 
-            <Link href={"#"} underline={"none"}>
-              <Typography variant={"body2"}>Забыли пароль?</Typography>
-            </Link>
+            <Typography variant={"body2"}>
+              <Link href={"./recovery"} underline={"none"}>
+                Забыли пароль?{" "}
+              </Link>
+            </Typography>
           </Stack>
 
-          <Button variant="contained" size={"large"} sx={{ boxShadow: 0, textTransform: 'none' }}>
+          <Button
+            variant="contained"
+            size={"large"}
+            sx={{ boxShadow: 0, textTransform: "none" }}
+          >
             Войти
           </Button>
 
           <Box justifyContent={"center"} alignItems={"center"} display="flex">
-            <Typography variant={"body2"} sx={{color: '#616263'}}>
+            <Typography variant={"body2"} sx={{ color: "#616263" }}>
               У вас еще нет аккаунта?{" "}
               <Link href={"./register"} underline={"none"}>
                 Зарегистрироваться!

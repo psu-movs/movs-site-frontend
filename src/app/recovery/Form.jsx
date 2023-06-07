@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 
-export default function RegisterForm() {
+export default function LoginForm() {
   return (
     <Box
       justifyContent={"center"}
@@ -25,14 +25,7 @@ export default function RegisterForm() {
         <Stack spacing={3}>
           <Link href={"../"}><img src={"/logo.svg"} alt={"logo"} width={"60%"} /></Link>
 
-          <Typography variant="h4">Регистрация</Typography>
-
-          <TextField
-            id="username"
-            label="Имя пользователя"
-            variant="outlined"
-            sx={{ backgroundColor: "#FFFFFF" }}
-          />
+          <Typography variant="h4">Восстановление пароля</Typography>
 
           <TextField
             id="email"
@@ -40,23 +33,15 @@ export default function RegisterForm() {
             variant="outlined"
             sx={{ backgroundColor: "#FFFFFF" }}
           />
-          <TextField
-            id="password"
-            label="Пароль"
-            variant="outlined"
-            type={"password"}
-            sx={{ backgroundColor: "#FFFFFF" }}
-          />
 
-          <Button variant="contained" size={"large"} sx={{ boxShadow: 0, textTransform: 'none'}}>
-            Зарегистрироваться
+          <Button variant="contained" size={"large"} sx={{ boxShadow: 0, textTransform: 'none' }}>
+            Отправить письмо на почту
           </Button>
 
           <Box justifyContent={"center"} alignItems={"center"} display="flex">
             <Typography variant={"body2"} sx={{color: '#616263'}}>
-              У вас уже есть аккаунт? {" "}
               <Link href={"./login"} underline={"none"}>
-                Войти!
+                Вернуться назад
               </Link>
             </Typography>
           </Box>
