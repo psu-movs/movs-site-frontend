@@ -11,7 +11,7 @@ const defaultTheme = createTheme(
     typography: {
       fontFamily: Inter.style.fontFamily,
       body1: { fontFamily: Inter.style.fontFamily },
-      body2: { fontFamily: Inter.style.fontFamily },
+      body2: { fontFamily: MontserratSemiBold.style.fontFamily },
       h1: { fontFamily: MontserratSemiBold.style.fontFamily, fontWeight: MontserratSemiBold.style.fontWeight },
       h2: { fontFamily: MontserratSemiBold.style.fontFamily, fontWeight: MontserratSemiBold.style.fontWeight },
       h3: { fontFamily: MontserratSemiBold.style.fontFamily, fontWeight: MontserratSemiBold.style.fontWeight },
