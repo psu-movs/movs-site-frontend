@@ -60,7 +60,7 @@ export default function LoginForm() {
             </Link>
           </Stack>
 
-          <Button variant="contained" size={"large"} sx={{ boxShadow: 0 }}>
+          <Button variant="contained" size={"large"} sx={{ boxShadow: 0, textTransform: 'none' }}>
             Войти
           </Button>
 
