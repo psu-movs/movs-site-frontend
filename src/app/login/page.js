@@ -1,9 +1,9 @@
-import Form from "@/app/auth/Form";
+import LoginForm from "./Form";
 
 export default function AuthPage() {
   return (
     <main>
-      <Form />
+      <LoginForm />
     </main>
   );
 }

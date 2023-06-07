@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 
-export default function Form() {
+export default function LoginForm() {
   return (
     <Box
       justifyContent={"center"}
