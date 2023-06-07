@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 
-export default function LoginForm() {
+export default function RegisterForm() {
   return (
     <Box
       justifyContent={"center"}
@@ -25,7 +25,14 @@ export default function LoginForm() {
         <Stack spacing={3}>
           <img src={"/logo.svg"} alt={"logo"} width={"60%"} />
 
-          <Typography variant="h4">Добро пожаловать</Typography>
+          <Typography variant="h4">Регистрация</Typography>
+
+          <TextField
+            id="username"
+            label="Имя пользователя"
+            variant="outlined"
+            sx={{ backgroundColor: "#FFFFFF" }}
+          />
 
           <TextField
             id="email"
@@ -41,34 +48,15 @@ export default function LoginForm() {
             sx={{ backgroundColor: "#FFFFFF" }}
           />
 
-          <Stack
-            direction="row"
-            spacing={10}
-            sx={{ alignItems: "center", justifyContent: "space-between" }}
-          >
-            <FormGroup>
-              <FormControlLabel
-                control={<Checkbox defaultChecked size={"medium"} />}
-                label={
-                  <Typography variant={"body2"}>Запомнить меня</Typography>
-                }
-              />
-            </FormGroup>
-
-            <Link href={"#"} underline={"none"}>
-              <Typography variant={"body2"}>Забыли пароль?</Typography>
-            </Link>
-          </Stack>
-
-          <Button variant="contained" size={"large"} sx={{ boxShadow: 0, textTransform: 'none' }}>
-            Войти
+          <Button variant="contained" size={"large"} sx={{ boxShadow: 0, textTransform: 'none'}}>
+            Зарегистрироваться
           </Button>
 
           <Box justifyContent={"center"} alignItems={"center"} display="flex">
             <Typography variant={"body2"} sx={{color: '#616263'}}>
-              У вас еще нет аккаунта?{" "}
-              <Link href={"./register"} underline={"none"}>
-                Зарегистрироваться!
+              У вас уже есть аккаунт? {" "}
+              <Link href={"./login"} underline={"none"}>
+                Войти!
               </Link>
             </Typography>
           </Box>
