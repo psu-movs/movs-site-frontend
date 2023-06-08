@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance, AxiosResponse, AxiosError } from "axios";
 import {
   ClientUser,
   DepartmentHeadInfo,
@@ -42,15 +42,22 @@ export default class HTTPClient {
 
     console.log(`[HTTP] ${method} ${endpoint} ${JSON.stringify(payload)}`)
 
-    const response = await this.client.request({
-      method: method,
-      url: endpoint,
-      data: payload?.data,
-      params: payload?.params,
-      headers: {
-        Authorization: this.token !== null && `Bearer ${this.token}`,
-      },
-    });
+    let response: AxiosResponse<any, any>;
+
+    try {
+      response = await this.client.request({
+        method: method,
+        url: endpoint,
+        data: payload?.data,
+        params: payload?.params,
+        headers: {
+          Authorization: this.token !== null && `Bearer ${this.token}`,
+        },
+      });
+    }
+    catch (error: AxiosError<any, any>) {
+      response = error.response
+    }
 
     if (response.status === 401) {
       this.token = null;
