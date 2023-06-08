@@ -15,6 +15,15 @@ interface RequestPayload {
   params?: StringAny;
 }
 
+interface ErrorPayload {
+  code: number;
+  detail: string;
+}
+
+interface ErrorResponse {
+  error: ErrorPayload
+}
+
 export default class HTTPClient {
   private client: AxiosInstance;
   private token: string | null;
@@ -23,10 +32,16 @@ export default class HTTPClient {
     this.client = axios.create({
       baseURL: "https://web-production-4e33.up.railway.app/api/v1",
     });
-    this.token = localStorage.getItem("token");
+    this.token = null;
   }
 
-  async request(method: string, endpoint: string, payload?: RequestPayload) {
+  async request(method: string, endpoint: string, payload?: RequestPayload): Promise<any | ErrorResponse> {
+    if (!this.token) {
+      this.token = localStorage.getItem("token");
+    }
+
+    console.log(`[HTTP] ${method} ${endpoint} ${JSON.stringify(payload)}`)
+
     const response = await this.client.request({
       method: method,
       url: endpoint,
@@ -37,7 +52,20 @@ export default class HTTPClient {
       },
     });
 
-    return response.data;
+    if (response.status === 401) {
+      this.token = null;
+      localStorage.removeItem("token");
+      return;
+    }
+
+    if (response.status === 200) return response.data;
+
+    return {
+      error: {
+        code: response.status,
+        message: response.data.detail
+      }
+    }
   }
 
   async register(username: string, email: string, password: string) {
@@ -46,7 +74,7 @@ export default class HTTPClient {
     data.append("email", email);
     data.append("password", password);
 
-    await this.request("POST", "/users", { data });
+    return await this.request("POST", "/users", { data });
   }
 
   async login(username: string, password: string) {
@@ -56,8 +84,12 @@ export default class HTTPClient {
 
     const response = await this.request("POST", "/users/login", { data });
 
+    if (response.error) return response;
+
     this.token = response.access_token;
     localStorage.setItem("token", response.access_token);
+
+    return null;
   }
 
   async getMe(): Promise<ClientUser> {
