@@ -1,5 +1,5 @@
 "use client";
-
+import { useState } from "react";
 import {
   Button,
   Container,
@@ -12,8 +12,29 @@ import {
   FormGroup,
   Typography,
 } from "@mui/material";
+import { useRouter } from "next/navigation";
+
+import AuthErrorModal from "@/components/authErrorModal";
+import httpClient from "@/http";
 
 export default function LoginForm() {
+  const { push } = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const onButtonClick = async () => {
+    const response = await httpClient.login(email, password);
+
+    if (response.error) {
+      setErrorMessage(response.error.message);
+      return;
+    }
+
+    push("/panel")
+  }
+
   return (
     <Box
       justifyContent={"center"}
@@ -23,7 +44,11 @@ export default function LoginForm() {
     >
       <Container maxWidth={"xs"}>
         <Stack spacing={3}>
-          <Link href={"../"}><img src={"/logo.svg"} alt={"logo"} width={"60%"} /></Link>
+          <AuthErrorModal text={errorMessage} />
+
+          <Link href={"../"}>
+            <img src={"/logo.svg"} alt={"logo"} width={"60%"} />
+          </Link>
 
           <Typography variant="h4">Добро пожаловать</Typography>
 
@@ -32,6 +57,7 @@ export default function LoginForm() {
             label="Электронная почта"
             variant="outlined"
             sx={{ backgroundColor: "#FFFFFF" }}
+            onChange={(element) => setEmail(element.target.value.trim())}
           />
           <TextField
             id="password"
@@ -39,6 +65,7 @@ export default function LoginForm() {
             variant="outlined"
             type={"password"}
             sx={{ backgroundColor: "#FFFFFF" }}
+            onChange={(element) => setPassword(element.target.value.trim())}
           />
 
           <Stack
@@ -66,6 +93,8 @@ export default function LoginForm() {
             variant="contained"
             size={"large"}
             sx={{ boxShadow: 0, textTransform: "none" }}
+            onClick={onButtonClick}
+            disabled={!email || !password}
           >
             Войти
           </Button>

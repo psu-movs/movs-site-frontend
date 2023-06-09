@@ -37,7 +37,7 @@ export default class HTTPClient {
 
   async request(method: string, endpoint: string, payload?: RequestPayload): Promise<any | ErrorResponse> {
     if (!this.token) {
-      this.token = localStorage.getItem("token");
+      this.token = window.localStorage.getItem("token");
     }
 
     console.log(`[HTTP] ${method} ${endpoint} ${JSON.stringify(payload)}`)
@@ -63,7 +63,7 @@ export default class HTTPClient {
     if (response.status === 401) {
       if (this.token) {
         this.token = null;
-        localStorage.removeItem("token");
+        window.localStorage.removeItem("token");
       }
       return null;
     }
@@ -97,13 +97,13 @@ export default class HTTPClient {
     if (response.error) return response;
 
     this.token = response.access_token;
-    localStorage.setItem("token", response.access_token);
+    window.localStorage.setItem("token", response.access_token);
 
     return null;
   }
 
-  async getMe(): Promise<ClientUser> {
-    return await this.request("GET", "/users");
+  async getMe(): Promise<ClientUser & ErrorResponse> {
+    return await this.request("GET", "/users/me");
   }
 
   async getDepartmentInfo(): Promise<DepartmentInfo> {
