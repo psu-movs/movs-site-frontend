@@ -55,14 +55,17 @@ export default class HTTPClient {
         },
       });
     }
+    // @ts-ignore
     catch (error: AxiosError<any, any>) {
       response = error.response
     }
 
     if (response.status === 401) {
-      this.token = null;
-      localStorage.removeItem("token");
-      return;
+      if (this.token) {
+        this.token = null;
+        localStorage.removeItem("token");
+      }
+      return null;
     }
 
     if (response.status === 200) return response.data;
