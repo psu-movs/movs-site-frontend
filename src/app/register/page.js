@@ -8,7 +8,7 @@ export default function RegisterPage() {
 
   useEffect(() => {
     isAuthorized().then((res) => {
-      if (res) push("/panel");
+      if (res) push("/manager");
     });
   }, []);
 

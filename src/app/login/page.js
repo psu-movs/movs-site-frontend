@@ -10,7 +10,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     isAuthorized().then((res) => {
-      if (res) push("/panel");
+      if (res) push("/manager");
     });
   }, []);
 

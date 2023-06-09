@@ -32,7 +32,7 @@ export default function LoginForm() {
       return;
     }
 
-    push("/panel")
+    push("/manager")
   }
 
   return (
