@@ -87,9 +87,9 @@ export default class HTTPClient {
     return await this.request("POST", "/users", { data });
   }
 
-  async login(username: string, password: string) {
+  async login(email: string, password: string) {
     const data = new FormData();
-    data.append("username", username);
+    data.append("username", email);
     data.append("password", password);
 
     const response = await this.request("POST", "/users/login", { data });
