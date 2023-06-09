@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import isAuthorized from "@/utils/checkAuthorized";
 
-export default function AuthPage() {
+export default function RegisterPage() {
   const { push } = useRouter();
 
   useEffect(() => {
