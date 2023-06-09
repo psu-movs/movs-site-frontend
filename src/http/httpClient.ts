@@ -30,7 +30,7 @@ export default class HTTPClient {
 
   constructor() {
     this.client = axios.create({
-      baseURL: "https://web-production-4e33.up.railway.app/api/v1",
+      baseURL: "https://api.movs.space/v1",
     });
     this.token = null;
   }
