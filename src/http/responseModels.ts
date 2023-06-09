@@ -1,7 +1,15 @@
+export enum UserPermissions {
+  none = 0,
+  manageNews = 1 << 0,
+  manageTeachers = 1 << 1,
+  manageInfo = 1 << 2,
+  administrator = 1 << 3
+}
+
 export interface ClientUser {
   full_name: string;
   email: string;
-  permissions: number;
+  permissions: UserPermissions;
 }
 
 export interface DepartmentInfo {
