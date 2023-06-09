@@ -27,7 +27,7 @@ export default function LoginForm() {
   const onButtonClick = async () => {
     const response = await httpClient.login(email, password);
 
-    if (response.error) {
+    if (response && response.error) {
       setErrorMessage(response.error.message);
       return;
     }
