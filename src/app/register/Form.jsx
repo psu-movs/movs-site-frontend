@@ -23,14 +23,14 @@ export default function RegisterForm() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const onButtonClick = async () => {
-    const response = await httpClient.register(username.trim(), email.trim(), password.trim());
+    const response = await httpClient.register(username, email, password);
 
     if (response.error) {
       setErrorMessage(response.error.message);
       return;
     }
 
-    push("/panel");
+    push("/login");
   };
 
   return (
@@ -55,7 +55,7 @@ export default function RegisterForm() {
             label="Имя пользователя"
             variant="outlined"
             sx={{ backgroundColor: "#FFFFFF" }}
-            onChange={(element) => setUsername(element.target.value)}
+            onChange={(element) => setUsername(element.target.value.trim())}
           />
 
           <TextField
@@ -63,7 +63,7 @@ export default function RegisterForm() {
             label="Электронная почта"
             variant="outlined"
             sx={{ backgroundColor: "#FFFFFF" }}
-            onChange={(element) => setEmail(element.target.value)}
+            onChange={(element) => setEmail(element.target.value.trim())}
           />
           <TextField
             id="password"
@@ -71,7 +71,7 @@ export default function RegisterForm() {
             variant="outlined"
             type={"password"}
             sx={{ backgroundColor: "#FFFFFF" }}
-            onChange={(element) => setPassword(element.target.value)}
+            onChange={(element) => setPassword(element.target.value.trim())}
           />
 
           <Button
