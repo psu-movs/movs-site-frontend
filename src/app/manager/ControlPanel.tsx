@@ -1,48 +1,46 @@
 "use client";
 
 import { Stack, Typography, Link } from "@mui/material";
-import { ClientUser, UserPermissions } from "@/http/responseModels";
+import { ClientUser } from "@/http/responseModels";
+import {
+  hasManageInfoPermission,
+  hasManageNewsPermission,
+  hasManageTeachersPermission,
+  isAdmin,
+} from "@/utils/userPermissions";
 
 export default function ControlPanel({ user }: { user: ClientUser }) {
-  const isAdmin = user.permissions & UserPermissions.administrator;
-  const hasManageNewsPermission =
-    user.permissions & UserPermissions.manageNews || isAdmin;
-  const hasManageTeachersPermission =
-    user.permissions & UserPermissions.manageTeachers || isAdmin;
-  const hasManageInfoPermission =
-    user.permissions & UserPermissions.manageInfo || isAdmin;
-
   return (
     <Stack spacing={2}>
-      {hasManageNewsPermission && (
+      {hasManageNewsPermission(user) && (
         <Typography>
-          <Link>Новости</Link>
+          <Link href={"?active=news"}>Новости</Link>
         </Typography>
       )}
 
-      {hasManageTeachersPermission && (
+      {hasManageTeachersPermission(user) && (
         <Typography>
-          <Link>Преподаватели</Link>
+          <Link href={"?active=teachers"}>Преподаватели</Link>
         </Typography>
       )}
 
-      {hasManageInfoPermission && (
+      {hasManageInfoPermission(user) && (
         <>
           <Typography>
-            <Link>Информация о кафедре</Link>
+            <Link href={"?active=department"}>Информация о кафедре</Link>
           </Typography>
           <Typography>
-            <Link>Абитуриентам</Link>
+            <Link href={"?active=applicants"}>Абитуриентам</Link>
           </Typography>
           <Typography>
-            <Link>Студентам</Link>
+            <Link href={"?active=students"}>Студентам</Link>
           </Typography>
         </>
       )}
 
-      {isAdmin && (
+      {isAdmin(user) && (
         <Typography>
-          <Link>Пользователи</Link>
+          <Link href={"?active=users"}>Пользователи</Link>
         </Typography>
       )}
     </Stack>

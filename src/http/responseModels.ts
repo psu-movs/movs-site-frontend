@@ -27,3 +27,12 @@ export interface DepartmentHeadInfo {
   full_name: string;
   photo_url: string;
 }
+
+export interface Article {
+  _id: string;
+  author_id: string;
+  title: string;
+  description: string;
+  creation_date: string;
+  thumbnail_url: string;
+}

@@ -1,26 +1,33 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import ControlPanel from "@/app/manager/ControlPanel";
 import { ClientUser } from "@/http/responseModels";
 import httpClient from "@/http";
+import NewsContainer from "@/app/manager/NewsContainer";
 
 export default function ManagerPage() {
   const { push } = useRouter();
+  const searchParams = useSearchParams();
+  const active = searchParams.get('active');
+
   const [user, setUser] = useState<ClientUser>();
 
   const fetchUser = async () => {
     const response = await httpClient.getMe();
-    if (response.error) {
+    if (!response || (response && response.error)) {
       push("/login");
     }
-    setUser(response)
-  }
+    if (response.permissions === 0) {
+      push("/");
+    }
+    setUser(response);
+  };
 
   useEffect(() => {
-    fetchUser()
+    fetchUser();
   }, []);
 
   if (!user) return;
@@ -30,6 +37,9 @@ export default function ManagerPage() {
       <Grid container spacing={2}>
         <Grid item xs={2}>
           <ControlPanel user={user} />
+        </Grid>
+        <Grid item xs={8}>
+          {active === 'news' && <NewsContainer />}
         </Grid>
       </Grid>
     </main>
