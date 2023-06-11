@@ -1,5 +1,3 @@
-import * as buffer from "buffer";
-
 export interface UpdateDepartmentInfo {
   phone?: string;
   email?: string;

@@ -9,7 +9,6 @@ import {
   Typography,
 } from "@mui/material";
 import httpClient from "@/http";
-import { Article } from "@/http/responseModels";
 
 interface AddArticleModalProps {
   article_id: string;

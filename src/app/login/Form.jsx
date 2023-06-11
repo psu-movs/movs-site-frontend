@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 
 import AuthErrorModal from "@/components/authErrorModal";
 import httpClient from "@/http";
+import Image from "next/image";
 
 export default function LoginForm() {
   const { push } = useRouter();
@@ -46,9 +47,11 @@ export default function LoginForm() {
         <Stack spacing={3}>
           <AuthErrorModal text={errorMessage} />
 
-          <Link href={"../"}>
-            <img src={"/logo.svg"} alt={"logo"} width={"60%"} />
-          </Link>
+          <div style={{width: '60%'}}>
+            <Link href={"/"}>
+              <Image src={"/logo.svg"} alt={"logo"}/>
+            </Link>
+          </div>
 
           <Typography variant="h4">Добро пожаловать</Typography>
 

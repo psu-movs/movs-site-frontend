@@ -49,7 +49,7 @@ export default class HTTPClient {
 
     console.log(`[HTTP] ${method} ${endpoint} ${JSON.stringify(payload)}`)
 
-    let response: AxiosResponse<any, any>;
+    let response: AxiosResponse<any, any> | undefined;
 
     try {
       response = await this.client.request({
@@ -62,10 +62,17 @@ export default class HTTPClient {
         },
       });
     }
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    catch (error: AxiosError<any, any>) {
-      response = error.response
+    catch (error) {
+      if (error instanceof AxiosError)
+        response = error.response;
+      else {
+        throw error;
+      }
     }
+
+    if (!response) return  null;
 
     if (response.status === 401) {
       if (this.token) {
