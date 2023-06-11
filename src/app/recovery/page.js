@@ -1,3 +1,5 @@
+"use client"
+
 import LoginForm from "./Form";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
