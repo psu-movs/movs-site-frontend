@@ -8,4 +8,4 @@ export default async function isAuthorized() {
   // unauthorized
   return !user.error;
 
-};
+}
