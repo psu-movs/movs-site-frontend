@@ -4,6 +4,7 @@ import { DepartmentHeadInfo } from "@/http/responseModels";
 import Image from "next/image";
 import httpClient from "@/http";
 import { useRouter } from "next/navigation";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function EditHeadInfo({ data }: { data: DepartmentHeadInfo }) {
   const router = useRouter();
@@ -73,8 +74,9 @@ function EditHeadInfo({ data }: { data: DepartmentHeadInfo }) {
         <Button
           onClick={saveInfo}
           disabled={!name || !phone || !address || !email}
+          variant="contained"
         >
-          Обновить
+          Сохранить
         </Button>
       </Stack>
     </Container>
@@ -82,13 +84,15 @@ function EditHeadInfo({ data }: { data: DepartmentHeadInfo }) {
 }
 
 export default function HeadInfo({ data }: { data: DepartmentHeadInfo }) {
+  const isTablet = useMediaQuery("(max-width:960px)");
+
   return (
     <Stack spacing={2}>
       <Typography variant={"h4"}>
         Редактирование и.о. заведующего кафедрой
       </Typography>
 
-      <Stack direction={"row"}>
+      <Stack direction={isTablet ? "column" : 'row'} spacing={2}>
         <Image
           src={data.photo_url}
           alt={"department_head_image"}

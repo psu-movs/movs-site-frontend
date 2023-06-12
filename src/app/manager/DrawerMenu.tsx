@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Drawer, IconButton } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 
-export default function DrawerMenu({children}) {
+export default function DrawerMenu({children}: {children: React.ReactNode}) {
   const [opened, setOpened] = useState<boolean>(false);
 
   const open = () => setOpened(true);
@@ -18,6 +18,7 @@ export default function DrawerMenu({children}) {
         anchor={'left'}
         open={opened}
         onClose={close}
+        sx={{padding: '5%'}}
       >
         {children}
       </Drawer>

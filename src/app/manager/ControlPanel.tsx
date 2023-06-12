@@ -87,10 +87,9 @@ function Menu({
 }
 
 export default function ControlPanel({ user }: { user: ClientUser }) {
-  const isMobile = useMediaQuery("(max-width:480px)");
   const isTablet = useMediaQuery("(max-width:960px)");
 
-  if (isMobile) {
+  if (isTablet) {
     return (
       <DrawerMenu>
         <Menu user={user} textVariant={"body2"} />
@@ -102,7 +101,7 @@ export default function ControlPanel({ user }: { user: ClientUser }) {
     <Menu
       user={user}
       direction={"row"}
-      textVariant={isTablet ? "body2" : "h6"}
+      textVariant={ "h6"}
     />
   );
 }
