@@ -7,6 +7,16 @@ const nextConfig = {
             transform: '@mui/icons-material/{{member}}',
         },
     },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'ik.imagekit.io',
+                port: '',
+                pathname: '**',
+            }
+        ]
+    }
 };
 
 module.exports = nextConfig;

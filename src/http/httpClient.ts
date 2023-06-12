@@ -62,8 +62,6 @@ export default class HTTPClient {
         },
       });
     }
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     catch (error) {
       if (error instanceof AxiosError)
         response = error.response;
@@ -134,7 +132,7 @@ export default class HTTPClient {
     return await this.request("PATCH", "/department", { data });
   }
 
-  async getDepartmentHead(): Promise<DepartmentInfo> {
+  async getDepartmentHead(): Promise<DepartmentHeadInfo> {
     return await this.request("GET", "/department/head");
   }
 
