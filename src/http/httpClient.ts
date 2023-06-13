@@ -1,10 +1,17 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosError } from "axios";
 import {
+  Article,
   ClientUser,
   DepartmentHeadInfo,
-  DepartmentInfo,
+  DepartmentInfo
 } from "@/http/responseModels";
-import { AddDepartmentHead, UpdateDepartmentInfo, UpdateDepartmentHead } from "@/http/requestModels";
+import {
+  AddDepartmentHead,
+  UpdateDepartmentInfo,
+  UpdateDepartmentHead,
+  AddArticle,
+  UpdateArticle
+} from "@/http/requestModels";
 
 type StringAny = {
   [key: string]: any;
@@ -42,7 +49,7 @@ export default class HTTPClient {
 
     console.log(`[HTTP] ${method} ${endpoint} ${JSON.stringify(payload)}`)
 
-    let response: AxiosResponse<any, any>;
+    let response: AxiosResponse<any, any> | undefined;
 
     try {
       response = await this.client.request({
@@ -55,10 +62,15 @@ export default class HTTPClient {
         },
       });
     }
-    // @ts-ignore
-    catch (error: AxiosError<any, any>) {
-      response = error.response
+    catch (error) {
+      if (error instanceof AxiosError)
+        response = error.response;
+      else {
+        throw error;
+      }
     }
+
+    if (!response) return  null;
 
     if (response.status === 401) {
       if (this.token) {
@@ -120,7 +132,7 @@ export default class HTTPClient {
     return await this.request("PATCH", "/department", { data });
   }
 
-  async getDepartmentHead(): Promise<DepartmentInfo> {
+  async getDepartmentHead(): Promise<DepartmentHeadInfo> {
     return await this.request("GET", "/department/head");
   }
 
@@ -149,5 +161,41 @@ export default class HTTPClient {
     if (payload.photo) data.append("photo", payload.photo);
 
     return await this.request("PATCH", "/department/head", { data });
+  }
+
+  async getArticles(): Promise<Article[]> {
+    return await this.request("GET", "/news")
+  }
+
+  async getArticle(articleID: string): Promise<Article> {
+    return await this.request("GET", `/news/${articleID}`);
+  }
+
+  async addArticle(
+    payload: AddArticle
+  ): Promise<Article> {
+    const data = new FormData();
+    data.append("title", payload.title);
+    data.append("description", payload.description);
+    data.append("thumbnail", payload.image);
+
+    return await this.request("POST", "/news", { data });
+  }
+
+  async updateArticle(
+    articleID: string,
+    payload: UpdateArticle
+  ): Promise<Article> {
+    const data = new FormData();
+
+    if (payload.title) data.append("title", payload.title);
+    if (payload.description) data.append("description", payload.description);
+    if (payload.image) data.append("thumbnail", payload.image);
+
+    return await this.request("PATCH", `/news/${articleID}`, {data})
+  }
+
+  async deleteArticle(articleID: string) {
+    await this.request("DELETE", `/news/${articleID}`)
   }
 }

@@ -1,50 +1,107 @@
 "use client";
 
 import { Stack, Typography, Link } from "@mui/material";
-import { ClientUser, UserPermissions } from "@/http/responseModels";
+import { ClientUser } from "@/http/responseModels";
+import {
+  hasManageInfoPermission,
+  hasManageNewsPermission,
+  hasManageTeachersPermission,
+  isAdmin,
+} from "@/utils/userPermissions";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import DrawerMenu from "@/app/manager/DrawerMenu";
+import { TypographyProps } from "@mui/material/Typography";
 
-export default function ControlPanel({ user }: { user: ClientUser }) {
-  const isAdmin = user.permissions & UserPermissions.administrator;
-  const hasManageNewsPermission =
-    user.permissions & UserPermissions.manageNews || isAdmin;
-  const hasManageTeachersPermission =
-    user.permissions & UserPermissions.manageTeachers || isAdmin;
-  const hasManageInfoPermission =
-    user.permissions & UserPermissions.manageInfo || isAdmin;
-
+function Menu({
+  user,
+  direction,
+  textVariant,
+}: {
+  user: ClientUser;
+  direction?: "row";
+  textVariant: TypographyProps["variant"];
+}) {
   return (
-    <Stack spacing={2}>
-      {hasManageNewsPermission && (
+    <Stack spacing={2} direction={direction} sx={{justifyContent: 'center'}}>
+      {hasManageNewsPermission(user) && (
         <Typography>
-          <Link>Новости</Link>
+          <Link underline={"none"} variant={textVariant} href={"?active=news"}>
+            Новости
+          </Link>
         </Typography>
       )}
 
-      {hasManageTeachersPermission && (
+      {hasManageTeachersPermission(user) && (
         <Typography>
-          <Link>Преподаватели</Link>
+          <Link
+            underline={"none"}
+            variant={textVariant}
+            href={"?active=teachers"}
+          >
+            Преподаватели
+          </Link>
         </Typography>
       )}
 
-      {hasManageInfoPermission && (
+      {hasManageInfoPermission(user) && (
         <>
           <Typography>
-            <Link>Информация о кафедре</Link>
+            <Link
+              underline={"none"}
+              variant={textVariant}
+              href={"?active=department"}
+            >
+              Кафедра
+            </Link>
           </Typography>
           <Typography>
-            <Link>Абитуриентам</Link>
+            <Link
+              underline={"none"}
+              variant={textVariant}
+              href={"?active=applicants"}
+            >
+              Абитуриентам
+            </Link>
           </Typography>
           <Typography>
-            <Link>Студентам</Link>
+            <Link
+              underline={"none"}
+              variant={textVariant}
+              href={"?active=students"}
+            >
+              Студентам
+            </Link>
           </Typography>
         </>
       )}
 
-      {isAdmin && (
+      {isAdmin(user) && (
         <Typography>
-          <Link>Пользователи</Link>
+          <Link underline={"none"} variant={textVariant} href={"?active=users"}>
+            Пользователи
+          </Link>
         </Typography>
       )}
     </Stack>
+  );
+}
+
+export default function ControlPanel({ user }: { user: ClientUser }) {
+  const isTablet = useMediaQuery("(max-width:960px)");
+
+  if (isTablet) {
+    return (
+      <DrawerMenu>
+        <Menu user={user} textVariant={"body2"} />
+      </DrawerMenu>
+    );
+  }
+
+  return (
+    <Menu
+      user={user}
+      direction={"row"}
+      textVariant={ "h6"}
+    />
   );
 }

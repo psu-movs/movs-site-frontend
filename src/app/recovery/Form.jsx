@@ -9,6 +9,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import Image from "next/image";
 
 export default function LoginForm() {
   return (
@@ -20,7 +21,11 @@ export default function LoginForm() {
     >
       <Container maxWidth={"xs"}>
         <Stack spacing={3}>
-          <Link href={"../"}><img src={"/logo.svg"} alt={"logo"} width={"60%"} /></Link>
+          <div style={{width: '60%'}}>
+            <Link href={"/"}>
+              <Image src={"/logo.svg"} alt={"logo"}/>
+            </Link>
+          </div>
 
           <Typography variant="h4">Восстановление пароля</Typography>
 

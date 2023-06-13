@@ -13,6 +13,7 @@ import httpClient from "@/http";
 import { useState } from "react";
 import AuthErrorModal from "@/components/authErrorModal";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function RegisterForm() {
   const { push } = useRouter();
@@ -44,9 +45,11 @@ export default function RegisterForm() {
         <Stack spacing={3}>
           <AuthErrorModal text={errorMessage} />
 
-          <Link href={"../"}>
-            <img src={"/logo.svg"} alt={"logo"} width={"60%"} />
-          </Link>
+          <div style={{width: '60%'}}>
+            <Link href={"/"}>
+              <Image src={"/logo.svg"} alt={"logo"}/>
+            </Link>
+          </div>
 
           <Typography variant="h4">Регистрация</Typography>
 

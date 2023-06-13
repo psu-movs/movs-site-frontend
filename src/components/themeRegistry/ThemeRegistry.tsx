@@ -19,7 +19,6 @@ function ThemeRegistry({ children }: { children: React.ReactNode }) {
     return (
       <style
         data-emotion={`${emotionCache.key} ${Object.keys(emotionCache.inserted).join(' ')}`}
-        /* eslint-disable-next-line react/no-danger */
         dangerouslySetInnerHTML={{
           __html: Object.values(emotionCache.inserted).join(' '),
         }}

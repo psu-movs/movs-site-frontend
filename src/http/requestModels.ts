@@ -20,3 +20,15 @@ export interface UpdateDepartmentHead {
   full_name?: string;
   photo?: File;
 }
+
+export interface AddArticle {
+  title: string;
+  description: string;
+  image: File;
+}
+
+export interface UpdateArticle {
+  title?: string;
+  description?: string;
+  image?: File;
+}
