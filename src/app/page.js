@@ -111,6 +111,302 @@ function News(){
 
   )
 }
+function Magazine(){
+  return(
+    <Container>
+      <Container
+      direction={'column'}
+      alignItems='Left'
+      justifyContent={'space-between'}
+      >
+      <Stack
+        direction={'row'}
+        spacing={6}
+      >
+        <Stack
+          maxWidth={'520px'}
+          height={'597px'}
+          paddingTop={'1%'}
+          alignItems='Left'
+        >
+          <img src="/parrot.svg" alt={"parrot"} width={520} height={300}/>
+          <Stack
+            spacing={2} 
+            direction={"row"} 
+            alignItems={"center"} 
+            justifyContent={"center"}
+            paddingLeft={'6%'}
+            paddingTop={'1%'}
+            width={'520px'}
+            height={'597px'}>
+            <Box 
+              direction={'column'}
+              paddingLeft={'4%'}
+              >
+              <Typography
+                    variant={"body1"}
+                    fontSize={16}>
+                      04.09.2023
+              </Typography>
+              <Box maxWidth={"sm"}
+                paddingTop={'1%'}> 
+                <Typography 
+                  variant={"body2"}
+                  fontSize={32}>
+                  Один из преподавателей Мех-мата завел себе красноголового попугая  
+                </Typography>
+                </Box>
+                  <Typography
+                    sx={{color: "#494949"}} 
+                    textAlign={"justify"}
+                    paddingTop={'3%'}
+                    maxWidth={"xl"}
+                    fontSize={24}>
+                      Звучит безумно, но это так. Попугай «Кеша» как его назвал сам хозяин говорит, что благодаря нему в вузе...
+                  </Typography>
+              </Box>
+
+            </Stack>
+        </Stack>
+        <Stack
+          maxWidth={'520px'}
+          height={'597px'}
+          paddingLeft={'4%'} 
+          paddingTop={'1%'}
+        >
+          <img src="/vesna.svg" alt={"vesna"} width={520} height={300}/>
+          <Stack
+            spacing={2} 
+            direction={"row"} 
+            alignItems={"center"} 
+            justifyContent={"center"}
+            paddingLeft={'6%'}
+            paddingTop={'1%'}
+            width={'520px'}
+            height={'597px'}>
+            <Box 
+              direction={'column'}
+              paddingLeft={'4%'}
+              >
+              <Typography
+                    variant={"body1"}
+                    fontSize={16}>
+                      15.07.2023
+              </Typography>
+              <Box maxWidth={"sm"}
+                paddingTop={'1%'}> 
+                <Typography 
+                  variant={"body2"}
+                  fontSize={32}>
+                  Студенты кафедры Высшей математики устроили пикник у первого корпуса 
+                </Typography>
+                </Box>
+                  <Typography
+                    sx={{color: "#494949"}} 
+                    textAlign={"justify"}
+                    paddingTop={'3%'}
+                    maxWidth={"xl"}
+                    fontSize={24}>
+                      Сегодня днем, студенты утсроили пикник напротив первого корпуса. Городилов А.Ю. увидел это и он...
+                  </Typography>
+              </Box>
+</Stack>
+        </Stack>
+        <Stack
+          maxWidth={'520px'}
+          height={'597px'}
+          paddingLeft={'4%'} 
+          paddingTop={'1%'}
+        >
+          <img src="/proc.svg" alt={"proc"} width={520} height={300}/>
+          <Stack
+            spacing={2} 
+            direction={"row"} 
+            alignItems={"center"} 
+            justifyContent={"center"}
+            paddingLeft={'6%'}
+            paddingTop={'1%'}
+            width={'520px'}
+            height={'597px'}>
+            <Box 
+              direction={'column'}
+              paddingLeft={'4%'}
+              >
+              <Typography
+                    variant={"body1"}
+                    fontSize={16}>
+                      18.05.2023
+              </Typography>
+              <Box maxWidth={"sm"}
+                paddingTop={'1%'}> 
+                <Typography 
+                  variant={"body2"}
+                  fontSize={32}>
+                  В первый корпус завезли компьютеры нового поколения
+                </Typography>
+                </Box>
+                  <Typography
+                    sx={{color: "#494949"}} 
+                    textAlign={"justify"}
+                    paddingTop={'3%'}
+                    maxWidth={"xl"}
+                    fontSize={24}>
+                      По приказу Городилова А.Ю. первый корпус получил мощные компьютеры, чтобы наконец-то он смог создать...
+                  </Typography>
+              </Box>
+
+            </Stack>
+        </Stack>
+      </Stack>
+      </Container>
+      <Container
+      direction={'column'}
+      alignItems='Left'
+      justifyContent={'space-between'}
+      >
+      <Stack
+        direction={'row'}
+        spacing={6}
+      >
+        <Stack
+          maxWidth={'520px'}
+          height={'597px'}
+          paddingTop={'1%'}
+          alignItems='Left'
+        >
+          <img src="/parrot.svg" alt={"parrot"} width={520} height={300}/>
+          <Stack
+            spacing={2} 
+            direction={"row"} 
+            alignItems={"center"} 
+            justifyContent={"center"}
+            paddingLeft={'6%'}
+            paddingTop={'1%'}
+            width={'520px'}
+            height={'597px'}>
+            <Box 
+              direction={'column'}
+              paddingLeft={'4%'}
+              >
+              <Typography
+                    variant={"body1"}
+                    fontSize={16}>
+                      04.09.2023
+              </Typography>
+              <Box maxWidth={"sm"}
+                paddingTop={'1%'}> 
+                <Typography 
+                  variant={"body2"}
+                  fontSize={32}>
+                  Один из преподавателей Мех-мата завел себе красноголового попугая  
+                </Typography>
+                </Box>
+                  <Typography
+                    sx={{color: "#494949"}} 
+                    textAlign={"justify"}
+                    paddingTop={'3%'}
+                    maxWidth={"xl"}
+                    fontSize={24}>
+                      Звучит безумно, но это так. Попугай «Кеша» как его назвал сам хозяин говорит, что благодаря нему в вузе...
+                  </Typography>
+              </Box>
+</Stack>
+        </Stack>
+        <Stack
+          maxWidth={'520px'}
+          height={'597px'}
+          paddingLeft={'4%'} 
+          paddingTop={'1%'}
+        >
+          <img src="/vesna.svg" alt={"vesna"} width={520} height={300}/>
+          <Stack
+            spacing={2} 
+            direction={"row"} 
+            alignItems={"center"} 
+            justifyContent={"center"}
+            paddingLeft={'6%'}
+            paddingTop={'1%'}
+            width={'520px'}
+            height={'597px'}>
+            <Box 
+              direction={'column'}
+              paddingLeft={'4%'}
+              >
+              <Typography
+                    variant={"body1"}
+                    fontSize={16}>
+                      15.07.2023
+              </Typography>
+              <Box maxWidth={"sm"}
+                paddingTop={'1%'}> 
+                <Typography 
+                  variant={"body2"}
+                  fontSize={32}>
+                  Студенты кафедры Высшей математики устроили пикник у первого корпуса 
+                </Typography>
+                </Box>
+                  <Typography
+                    sx={{color: "#494949"}} 
+                    textAlign={"justify"}
+                    paddingTop={'3%'}
+                    maxWidth={"xl"}
+                    fontSize={24}>
+                      Сегодня днем, студенты утсроили пикник напротив первого корпуса. Городилов А.Ю. увидел это и он...
+                  </Typography>
+              </Box>
+
+            </Stack>
+        </Stack>
+        <Stack
+          maxWidth={'520px'}
+          height={'597px'}
+          paddingLeft={'4%'} 
+          paddingTop={'1%'}
+        >
+          <img src="/proc.svg" alt={"proc"} width={520} height={300}/>
+          <Stack
+            spacing={2} 
+            direction={"row"} 
+            alignItems={"center"} 
+            justifyContent={"center"}
+            paddingLeft={'6%'}
+            paddingTop={'1%'}
+            width={'520px'}
+            height={'597px'}>
+            <Box 
+              direction={'column'}
+              paddingLeft={'4%'}
+              >
+              <Typography
+                    variant={"body1"}
+                    fontSize={16}>
+                      18.05.2023
+              </Typography>
+              <Box maxWidth={"sm"}
+                paddingTop={'1%'}> 
+                <Typography 
+                  variant={"body2"}
+                  fontSize={32}>
+                  В первый корпус завезли компьютеры нового поколения
+                </Typography>
+                </Box>
+                  <Typography
+                    sx={{color: "#494949"}} 
+                    textAlign={"justify"}
+                    paddingTop={'3%'}
+                    maxWidth={"xl"}
+                    fontSize={24}>
+                      По приказу Городилова А.Ю. первый корпус получил мощные компьютеры, чтобы наконец-то он смог создать...
+                  </Typography>
+              </Box>
+
+            </Stack>
+        </Stack>
+      </Stack>
+      </Container>
+  </Container>
+  )
+}
 
 
 export default function Home() {
@@ -119,6 +415,7 @@ export default function Home() {
       <Header />
       <ProfessionalTest />
       <News/>
+      <Magazine/>
       <Footer/>
     </main>
   );
