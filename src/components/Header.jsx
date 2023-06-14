@@ -21,7 +21,8 @@ export function Header() {
         paddingTop: "1%",
         paddingLeft: "3%",
         paddingRight: "3%",
-        marginBottom: "2%",
+        paddingBottom: '1%',
+        marginBottom: "1%",
       }}
     >
       <Stack
