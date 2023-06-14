@@ -6,7 +6,8 @@ import { Header } from "@/components/Header";
 
 function ProfessionalTest() {
   return (
-    <Container maxWidth={"xl"}>
+  <>
+  <Container maxWidth={"xl"}>
       <Stack justifyContent="space-between" alignItems="left">
         <img src="/earth.svg" alt={"earth"} />
         <Stack
@@ -60,8 +61,53 @@ function ProfessionalTest() {
         </Stack>
       </Stack>
     </Container>
+    <Container 
+    maxWidth={"x1"}>
+      <Typography
+      paddingLeft={'6%'}
+      paddingTop={'1%'}
+      fontSize={38} 
+      variant={"body2"}>
+        Новости
+      </Typography>
+      <Stack
+      paddingLeft={'6%'}
+      paddingTop={'1%'}
+      width={'1585px'}
+      height={'400px'}
+      direction={'row'}>
+        <img src="/raketa.svg" alt={"raketa"} />
+        <Box 
+        direction={'column'}
+        paddingLeft={'4%'}
+        >
+          <Typography
+          variant={"body1"}
+          fontSize={16}>
+           1.06.2023
+          </Typography>
+          <Box maxWidth={"sm"}
+          paddingTop={'1%'}> 
+            <Typography 
+            variant={"body2"}
+            fontSize={40}>
+             Студенты ИКНТ создали веб-сайт для кафедры МОВС
+           </Typography>
+          </Box>
+          <Typography
+          paddingTop={'3%'}
+          maxWidth={"xl"}
+          fontSize={26}>
+          В рамках дисциплины проектной практики, студенты 1 курса из направления «Информационные системы и технологии» создали сайт для кафедры МОВС Механико-математического факультета
+          </Typography>
+        </Box>
+
+      </Stack>
+    </Container>
+  </>
   );
 }
+
 
 export default function Home() {
   return (
