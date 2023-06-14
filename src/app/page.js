@@ -2,6 +2,7 @@
 
 import { Button, Container, Box, Stack, Typography } from "@mui/material";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 
 function ProfessionalTest() {
@@ -111,12 +112,14 @@ function News(){
   )
 }
 
+
 export default function Home() {
   return (
     <main>
       <Header />
       <ProfessionalTest />
       <News/>
+      <Footer/>
     </main>
   );
 }
