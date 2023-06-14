@@ -1,51 +1,8 @@
 "use client";
 
-import { Button, Container, Link, Box, Stack, Typography } from "@mui/material";
+import { Button, Container, Box, Stack, Typography } from "@mui/material";
+import { Header } from "@/components/Header";
 
-import Image from "next/image";
-
-const HeaderLink = ({ text }) => (
-  <Typography variant={"body2"}>
-    <Link underline={"none"} sx={{ color: "#000" }}>
-      {text}
-    </Link>
-  </Typography>
-);
-
-function Header() {
-  return (
-    <Container
-      maxWidth={false}
-      sx={{
-        backgroundColor: "#f5f5fe",
-        height: "5%",
-        paddingTop: "1%",
-        paddingLeft: "3%",
-        paddingRight: "3%",
-        marginBottom: "2%",
-      }}
-    >
-      <Stack
-        direction={"row"}
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <Image src="/logo.svg" width={230} height={60} alt={"logo"} />
-        <Stack direction="row" spacing={3}>
-          <HeaderLink text={"Абитуриентам"} />
-          <HeaderLink text={"Студентам"} />
-          <HeaderLink text={"Научные работы"} />
-          <HeaderLink text={"Кафедра"} />
-        </Stack>
-        <Typography variant={"body2"} sx={{ width: 60 }}>
-          <Link href={"/login"} underline={"none"}>
-            Войти
-          </Link>
-        </Typography>
-      </Stack>
-    </Container>
-  );
-}
 
 function ProfessionalTest() {
   return (
