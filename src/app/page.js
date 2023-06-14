@@ -6,7 +6,6 @@ import { Header } from "@/components/Header";
 
 function ProfessionalTest() {
   return (
-  <>
   <Container maxWidth={"xl"}>
       <Stack justifyContent="space-between" alignItems="left">
         <img src="/earth.svg" alt={"earth"} />
@@ -61,6 +60,10 @@ function ProfessionalTest() {
         </Stack>
       </Stack>
     </Container>
+  );
+}
+function News(){
+  return(
     <Container 
     maxWidth={"x1"}>
       <Typography
@@ -104,16 +107,16 @@ function ProfessionalTest() {
 
       </Stack>
     </Container>
-  </>
-  );
-}
 
+  )
+}
 
 export default function Home() {
   return (
     <main>
       <Header />
       <ProfessionalTest />
+      <News/>
     </main>
   );
 }
