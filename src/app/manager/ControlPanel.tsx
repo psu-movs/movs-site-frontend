@@ -1,6 +1,6 @@
 "use client";
 
-import { Stack, Typography, Link } from "@mui/material";
+import { Stack, Typography, Link, Container } from "@mui/material";
 import { ClientUser } from "@/http/responseModels";
 import {
   hasManageInfoPermission,
@@ -92,7 +92,9 @@ export default function ControlPanel({ user }: { user: ClientUser }) {
   if (isTablet) {
     return (
       <DrawerMenu>
-        <Menu user={user} textVariant={"body2"} />
+        <Container sx={{marginTop: '10%'}}>
+          <Menu user={user} textVariant={"body2"} />
+        </Container>
       </DrawerMenu>
     );
   }
