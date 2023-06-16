@@ -1,18 +1,13 @@
-"use client"
-
 import LoginForm from "./Form";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import isAuthorized from "@/utils/checkAuthorized";
+import { redirect } from "next/navigation";
+import httpClient from "@/http";
 
-export default function RegisterPage() {
-  const { push } = useRouter();
-
-  useEffect(() => {
-    isAuthorized().then((res) => {
-      if (res) push("/manager");
-    });
-  }, []);
+export default async function RegisterPage() {
+  const response = await httpClient.getMe();
+  if (response && !response.error) {
+    redirect('/manager');
+    return;
+  }
 
   return (
     <main>

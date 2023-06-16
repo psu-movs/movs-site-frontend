@@ -38,15 +38,12 @@ export default class HTTPClient {
   constructor() {
     this.client = axios.create({
       baseURL: "https://api.movs.space/v1",
+      withCredentials: true
     });
     this.token = null;
   }
 
   async request(method: string, endpoint: string, payload?: RequestPayload): Promise<any | ErrorResponse> {
-    if (!this.token) {
-      this.token = window.localStorage.getItem("token");
-    }
-
     console.log(`[HTTP] ${method} ${endpoint} ${JSON.stringify(payload)}`)
 
     let response: AxiosResponse<any, any> | undefined;
@@ -75,7 +72,6 @@ export default class HTTPClient {
     if (response.status === 401) {
       if (this.token) {
         this.token = null;
-        window.localStorage.removeItem("token");
       }
       return null;
     }
@@ -109,7 +105,6 @@ export default class HTTPClient {
     if (response.error) return response;
 
     this.token = response.access_token;
-    window.localStorage.setItem("token", response.access_token);
 
     return null;
   }

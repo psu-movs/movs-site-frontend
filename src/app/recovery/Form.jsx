@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 
-export default function LoginForm() {
+export default function RecoveryForm() {
   return (
     <Box
       justifyContent={"center"}
