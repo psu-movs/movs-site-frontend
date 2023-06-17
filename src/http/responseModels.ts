@@ -32,7 +32,8 @@ export interface Article {
   _id: string;
   author_id: string;
   title: string;
-  description: string;
+  description: string | null;
+  description_preview: string;
   creation_date: string;
   thumbnail_url: string;
 }

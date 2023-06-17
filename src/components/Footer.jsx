@@ -24,7 +24,6 @@ export function Footer() {
   return (
     <Container
       maxWidth={false}
-      maxHeight={false}
       disableGutters
       sx={{
         backgroundColor: "#f5f5fe",

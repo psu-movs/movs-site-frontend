@@ -17,7 +17,7 @@ const ArticleInfo = ({article}: {article: Article}) => {
         </Typography>
 
         <Typography marginTop={"3%"} fontSize={match ? 20 : 26} color={"#494949"}>
-          {article.description.slice(0, 50)}
+          {article.description_preview.slice(0, 50)}
         </Typography>
       </Box>
     </Box>
