@@ -10,6 +10,7 @@ export interface AddDepartmentHead {
   email: string;
   address: string;
   full_name: string;
+  post: string;
   photo: File;
 }
 
@@ -18,6 +19,7 @@ export interface UpdateDepartmentHead {
   email?: string;
   address?: string;
   full_name?: string;
+  post?: string;
   photo?: File;
 }
 
