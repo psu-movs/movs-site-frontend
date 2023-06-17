@@ -25,6 +25,7 @@ export interface DepartmentHeadInfo {
   email: string;
   address: string;
   full_name: string;
+  post: string;
   photo_url: string;
 }
 
