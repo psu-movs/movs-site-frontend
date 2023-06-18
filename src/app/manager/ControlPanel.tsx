@@ -13,8 +13,8 @@ import { TypographyProps } from "@mui/material/Typography";
 import Link from "next/link";
 
 const HeaderLink = ({ text, href, textVariant }) => (
-  <Link href={href}>
-    <Typography variant={textVariant} sx={{ textDecoration: "none" }}>
+  <Link href={href} style={{textDecoration: "none", color: '#2148C0'}}>
+    <Typography variant={textVariant}>
       {text}
     </Typography>
   </Link>

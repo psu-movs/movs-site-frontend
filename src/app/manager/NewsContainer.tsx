@@ -16,8 +16,7 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
-import AddArticleModal from "@/app/manager/AddArticleModal";
-import UpdateArticleModal from "@/app/manager/UpdateArticleModal";
+import { useRouter } from "next/navigation";
 
 function ArticleCard({
   article,
@@ -26,50 +25,42 @@ function ArticleCard({
   article: Article;
   onDelete(article: Article): Promise<void>;
 }) {
-  const [editModalOpened, setEditModalOpened] = useState<boolean>(false);
+  const router = useRouter();
 
   return (
-    <>
-      <UpdateArticleModal
-        isOpened={editModalOpened}
-        onClose={() => setEditModalOpened(false)}
-        article_id={article._id}
-      />
-      <Card sx={{ padding: "1%" }}>
-        <Stack direction={"row"} sx={{ justifyContent: "space-between" }}>
-          <Typography>{article.creation_date}</Typography>
-          <Typography>{article.author_id}</Typography>
-        </Stack>
-        <Stack direction={"row"} sx={{ justifyContent: "space-between" }}>
-          <Typography variant={"h6"}>
-            <Link href={`/news/${article._id}`} underline={"none"}>
-              {article.title}
-            </Link>
-          </Typography>
+    <Card sx={{ padding: "1%" }}>
+      <Stack direction={"row"} sx={{ justifyContent: "space-between" }}>
+        <Typography>{article.creation_date}</Typography>
+        <Typography>{article.author_id}</Typography>
+      </Stack>
+      <Stack direction={"row"} sx={{ justifyContent: "space-between" }}>
+        <Typography variant={"h6"}>
+          <Link href={`/news/${article._id}`} underline={"none"}>
+            {article.title}
+          </Link>
+        </Typography>
 
-          <Stack direction={"row"}>
-            <IconButton
-              aria-label="edit"
-              onClick={() => setEditModalOpened(true)}
-            >
-              <EditIcon />
-            </IconButton>
-            <IconButton aria-label="delete" onClick={() => onDelete(article)}>
-              <DeleteIcon />
-            </IconButton>
-          </Stack>
+        <Stack direction={"row"}>
+          <IconButton
+            aria-label="edit"
+            onClick={() => {
+              router.push(`/manager/article/${article._id}`);
+            }}
+          >
+            <EditIcon />
+          </IconButton>
+          <IconButton aria-label="delete" onClick={() => onDelete(article)}>
+            <DeleteIcon />
+          </IconButton>
         </Stack>
-      </Card>
-    </>
+      </Stack>
+    </Card>
   );
 }
 
 export default function NewsContainer() {
+  const router = useRouter();
   const [news, setNews] = useState<Article[]>([]);
-  const [modalOpened, setModalOpened] = useState<boolean>(false);
-
-  const openModal = () => setModalOpened(true);
-  const closeModal = () => setModalOpened(false);
 
   const deleteArticle = async (deletedArticle: Article) => {
     await httpClient.deleteArticle(deletedArticle._id);
@@ -89,9 +80,13 @@ export default function NewsContainer() {
   return (
     <Box>
       <Container>
-        <Button onClick={openModal}>Добавить статью</Button>
-
-        <AddArticleModal isOpened={modalOpened} onClose={closeModal} />
+        <Button
+          onClick={() => {
+            router.push("/manager/article");
+          }}
+        >
+          Добавить статью
+        </Button>
 
         <Stack spacing={2}>
           {news.map((article) => (

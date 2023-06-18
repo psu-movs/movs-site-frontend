@@ -1,25 +1,10 @@
-"use client";
-
 import { useState } from "react";
-import {
-  Modal,
-  TextField,
-  Input,
-  Button,
-  Stack,
-  Container, Typography
-} from "@mui/material";
 import httpClient from "@/http";
+import { Button, Container, Input, Stack, TextField, Typography } from "@mui/material";
+import { useRouter } from "next/navigation";
 
-interface AddArticleModalProps {
-  isOpened: boolean;
-  onClose(): void;
-}
-
-export default function AddArticleModal({
-  isOpened,
-  onClose,
-}: AddArticleModalProps) {
+export default function CreateArticleForm() {
+  const router = useRouter();
   const [title, setTitle] = useState<string>();
   const [description, setDescription] = useState<string>();
   const [imageFile, setImageFile] = useState<File>();
@@ -35,23 +20,14 @@ export default function AddArticleModal({
       description,
       image: imageFile,
     });
-    setTitle(undefined);
-    setDescription(undefined);
-    setImageFile(undefined);
-    onClose();
+
+    router.push('/manager?active=news');
   };
 
   return (
-    <Modal
-      open={isOpened}
-      onClose={onClose}
-      keepMounted
-      sx={{ overflow: "scroll" }}
-    >
       <Container
         maxWidth={"md"}
         sx={{
-          backgroundColor: "#FFFFFF",
           alignItems: "center",
           justifyContent: "center",
         }}
@@ -74,6 +50,10 @@ export default function AddArticleModal({
             onChange={(element) => setDescription(element.target.value.trim())}
           />
 
+          <Typography variant={'h5'}>
+            Изображение
+          </Typography>
+
           <Input
             type={"file"}
             onChange={(element) => {
@@ -90,6 +70,5 @@ export default function AddArticleModal({
           </Button>
         </Stack>
       </Container>
-    </Modal>
-  );
+  )
 }
