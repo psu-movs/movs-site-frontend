@@ -4,7 +4,6 @@ import { useState } from "react";
 import {
   Button,
   Container,
-  Link,
   Box,
   Stack,
   TextField,
@@ -14,6 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
+import Link from "next/link"
 
 import AuthErrorModal from "@/components/authErrorModal";
 import httpClient from "@/http";
