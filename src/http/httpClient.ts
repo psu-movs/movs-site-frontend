@@ -37,7 +37,7 @@ export default class HTTPClient {
 
   constructor() {
     this.client = axios.create({
-      baseURL: "http://192.168.0.105:8000/v1", // https://api.movs.space/v1
+      baseURL: "https://api.movs.space/v1",
     });
   }
 
