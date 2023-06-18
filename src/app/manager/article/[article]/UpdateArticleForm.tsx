@@ -19,6 +19,8 @@ export default function UpdateArticleForm({ article }: { article: Article }) {
 
   useEffect(() => {
     setTitle(article.title);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     setDescription(article.description);
   })
 

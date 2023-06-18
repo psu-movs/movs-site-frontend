@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Manager from "@/app/manager/Manager";
 import { useAuth } from "@/app/context/useAuth";
 
-export default function ManagerPage({ searchParams }) {
+export default function ManagerPage({ searchParams }: {searchParams: {active: string}}) {
   const { user } = useAuth();
   const router = useRouter();
 

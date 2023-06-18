@@ -5,7 +5,7 @@ import { useAuth } from "@/app/context/useAuth";
 import { useRouter } from "next/navigation";
 import CreateArticleForm from "./CreateArticleForm";
 
-export default function ArticlePage({params}) {
+export default function ArticlePage() {
   const { user } = useAuth();
   const router = useRouter();
 
