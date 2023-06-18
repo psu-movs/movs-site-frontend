@@ -19,7 +19,7 @@ export default function Article() {
         justifyContent={"center"}
         paddingTop={"1%"}
       >
-        <Box direction={"column"}>
+        <Box>
           <Typography variant={"body1"} fontSize={16}>
             04.09.2023
           </Typography>
