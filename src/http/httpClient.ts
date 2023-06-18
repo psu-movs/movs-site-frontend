@@ -38,7 +38,6 @@ export default class HTTPClient {
   constructor() {
     this.client = axios.create({
       baseURL: "https://api.movs.space/v1",
-      withCredentials: true
     });
     this.token = null;
   }
@@ -60,19 +59,20 @@ export default class HTTPClient {
       });
     }
     catch (error) {
-      if (error instanceof AxiosError)
+      if (error instanceof AxiosError) {
         response = error.response;
+      }
+
       else {
         throw error;
       }
     }
 
+    console.log(`[HTTP] Received a response with status code: ${response?.status}`)
+
     if (!response) return  null;
 
     if (response.status === 401) {
-      if (this.token) {
-        this.token = null;
-      }
       return null;
     }
 
