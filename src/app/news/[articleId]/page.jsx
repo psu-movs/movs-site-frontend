@@ -13,7 +13,7 @@ export default function ArticlePage({params}) {
     httpClient.getArticle(params.articleId).then(fetchedArticle => {
       setArticle(fetchedArticle);
     })
-  }, [])
+  }, []);
 
   return (
     <main>

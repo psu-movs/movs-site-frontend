@@ -23,7 +23,7 @@ export default function Article({data}: ArticleProps) {
           </Typography>
           <img src={data.thumbnail_url} alt={"Картинка статьи"}  loading={'lazy'}/>
         </Stack>
-        <Typography textAlign={"justify"} sx={{fontSize: 24, fontWeight: "medium"}}>
+        <Typography textAlign={"justify"} sx={{fontSize: 24, fontWeight: "medium", whiteSpace: 'pre-line'}}>
           {data.description}
         </Typography>
       </Stack>
