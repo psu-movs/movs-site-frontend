@@ -5,15 +5,24 @@ import { Footer } from "@/components/Footer";
 import News from "@/components/news/News";
 import VocationalTest from "@/components/VocationalTest";
 import httpClient from "@/http";
+import { useEffect, useState } from "react";
+import { useAuth } from "@/app/context/useAuth";
 
-export default async function Home() {
-  const news = await httpClient.getArticles();
+export default function Home() {
+  const [news, setNews] = useState([]);
+  const { user } = useAuth();
+
+  useEffect(() => {
+    httpClient.getArticles().then(articles => {
+      setNews(articles);
+    })
+  }, [])
 
   return (
     <main>
       <Header />
       <VocationalTest />
-      <News news={news}/>
+      {news.length !== 0 && <News news={news}/>}
       <Footer />
     </main>
   );

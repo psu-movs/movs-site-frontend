@@ -80,7 +80,6 @@ export default function NewsContainer() {
   const fetchNews = async () => {
     const articles = await httpClient.getArticles();
     setNews(articles);
-    console.log(articles);
   };
 
   useEffect(() => {
@@ -97,7 +96,7 @@ export default function NewsContainer() {
         <Stack spacing={2}>
           {news.map((article) => (
             <ArticleCard
-              key={article.title}
+              key={article._id}
               article={article}
               onDelete={deleteArticle}
             />

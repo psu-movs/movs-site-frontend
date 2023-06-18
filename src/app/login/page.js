@@ -1,13 +1,15 @@
+"use client";
+
 import LoginForm from "./Form";
-import httpClient from "@/http";
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+import { useAuth } from "@/app/context/useAuth";
 
-export default async function LoginPage() {
-  const response = await httpClient.getMe();
+export default function LoginPage() {
+  const {user} = useAuth();
+  const router = useRouter();
 
-  if (response && !response.error) {
-    redirect('/manager');
-    return;
+  if (user) {
+    router.push("/manager")
   }
 
   return (

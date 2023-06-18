@@ -34,8 +34,9 @@ export default function UpdateArticleModal({
   }
 
   useEffect(() => {
-    fetchArticle();
-  }, [])
+    if (isOpened)
+      fetchArticle();
+  }, [isOpened])
 
   const updateArticle = async () => {
     if (!title || !description) {
@@ -50,7 +51,6 @@ export default function UpdateArticleModal({
       description,
       image: imageFile,
     });
-    console.log(res)
     onClose();
   };
 

@@ -2,25 +2,27 @@
 
 import { useRouter } from 'next/navigation'
 
-import httpClient from "@/http";
-
 import Manager from "@/app/manager/Manager";
+import { useAuth } from "@/app/context/useAuth";
 
-export default async function ManagerPage({ searchParams }) {
-  const active = searchParams.get('active');
-  const response = await httpClient.getMe();
+export default function ManagerPage({ searchParams }) {
+  const { user } = useAuth();
   const router = useRouter();
 
-  if (!response || (response && response.error)) {
+  const active = searchParams.active;
+
+  if (!user) {
     router.push("/login");
+    return;
   }
-  if (response.permissions === 0) {
+
+  if (user.permissions === 0) {
     router.push("/");
   }
 
   return (
     <main>
-      <Manager user={response} active={active} />
+      <Manager user={user} active={active} />
     </main>
   );
 }
