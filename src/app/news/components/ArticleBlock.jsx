@@ -1,16 +1,22 @@
+"use client"
+
 import { Box, Stack, Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-export default function Article() {
+const ArticleBlock = ({article}) =>  {
   const match = useMediaQuery("(max-width:1700px)");
-
+  
   return (
     <Stack
       paddingTop={"1%"}
+      paddingBottom={"3%"}
       alignItems="left"
-      width={'85%'}
+      width={'90%'}
+      sx={{
+        '&:hover': {opacity: [0.8]}
+      }}
     >
-      <img src="/parrot.svg" alt={"parrot"} loading={'lazy'}/>
+      <img src={article.thumbnail_url} alt={"Картинка статьи"} loading={'lazy'}/>
 
       <Stack
         spacing={2}
@@ -20,27 +26,33 @@ export default function Article() {
         paddingTop={"1%"}
       >
         <Box>
-          <Typography variant={"body1"} fontSize={16}>
-            04.09.2023
+          <Typography 
+            variant={"body1"} 
+            fontSize={match ? 12 : 14}
+            color={"#4B4B4B"}>
+          {article.creation_date}
           </Typography>
           <Box maxWidth={"sm"} paddingTop={"1%"}>
-            <Typography variant={"body2"} fontSize={match ? 20 : 32}>
-              Один из преподавателей Мех-мата завел себе красноголового
-              попугая
+            <Typography 
+              color={"#000000"}
+              variant={"body2"} 
+              fontSize={match ? 16 : 24}>
+              {article.title}
             </Typography>
           </Box>
           <Typography
-            sx={{ color: "#494949" }}
+            color={"#494949"}
             textAlign={"justify"}
             paddingTop={"3%"}
             maxWidth={"xl"}
-            fontSize={match ? 16 : 24}
+            fontSize={match ? 12 : 16}
           >
-            Звучит безумно, но это так. Попугай «Кеша» как его назвал сам
-            хозяин говорит, что благодаря нему в вузе...
+            {article.description_preview}
           </Typography>
         </Box>
       </Stack>
     </Stack>
-  )
+  );
 }
+
+export default ArticleBlock;

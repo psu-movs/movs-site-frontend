@@ -15,6 +15,7 @@ const HeaderLink = ({ text, href }) => (
 
 const Menu = ({direction}) => (
   <Stack direction={direction} spacing={3}>
+    <HeaderLink text={"Новости"} href={"/news"} />
     <HeaderLink text={"Абитуриентам"} />
     <HeaderLink text={"Студентам"} />
     <HeaderLink text={"Научные работы"} />
