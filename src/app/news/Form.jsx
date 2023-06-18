@@ -1,10 +1,10 @@
 "use client"
 
-import { Box, Grid, Link } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useEffect, useState } from "react";
 import ArticleBlock from "./components/ArticleBlock";
-
+import Link from "next/link"
 
 export default function NewsList({news}) {
   const [gridColumns, setGridColumns] = useState(12);
@@ -24,7 +24,7 @@ export default function NewsList({news}) {
       <Grid container spacing={1} columns={gridColumns}>
         {news.map(article => (
           <Grid item xs={3} key={article}>
-            <Link href={"/news/" + article._id} underline="none">
+            <Link href={`/news/${article._id}`} style={{textDecoration: 'none'}}>
               <ArticleBlock key={article} article={article}/>
             </Link>
           </Grid>
