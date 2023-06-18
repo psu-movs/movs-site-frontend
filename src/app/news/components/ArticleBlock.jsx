@@ -30,7 +30,7 @@ const ArticleBlock = ({article}) =>  {
             variant={"body1"} 
             fontSize={match ? 12 : 14}
             color={"#4B4B4B"}>
-          {/\d{4}\-\d{2}\-\d{2}/.exec(article.creation_date)}
+          {article.creation_date}
           </Typography>
           <Box maxWidth={"sm"} paddingTop={"1%"}>
             <Typography 

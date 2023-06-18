@@ -19,7 +19,7 @@ export default function Article({data}: ArticleProps) {
             {data.title}
           </Typography>
           <Typography sx={{fontSize: 20, fontWeight: "medium", color: "#4B4B4B"}}>
-            {/\d{4}\-\d{2}\-\d{2}/.exec(data.creation_date)}
+            {data.creation_date}
           </Typography>
           <img src={data.thumbnail_url} alt={"Картинка статьи"}  loading={'lazy'}/>
         </Stack>
