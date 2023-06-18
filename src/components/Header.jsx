@@ -1,35 +1,36 @@
 "use client";
 
-import { Container, Link, Stack, Typography } from "@mui/material";
+import { Container, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import DrawerMenu from "@/app/manager/DrawerMenu";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Link from "next/link";
 
 const HeaderLink = ({ text, href }) => (
-  <Typography variant={"body2"}>
-    <Link underline={"none"} sx={{ color: "#000" }} href={href}>
+  <Link style={{ textDecoration: "none", color: "#000" }} href={href}>
+    <Typography variant={"body2"} sx={{ "&:hover": { color: "#2148C0" } }}>
       {text}
-    </Link>
-  </Typography>
+    </Typography>
+  </Link>
 );
 
-const Menu = ({direction}) => (
+const Menu = ({ direction }) => (
   <Stack direction={direction} spacing={3}>
     <HeaderLink text={"Новости"} href={"/news"} />
-    <HeaderLink text={"Абитуриентам"} />
-    <HeaderLink text={"Студентам"} />
-    <HeaderLink text={"Научные работы"} />
+    <HeaderLink text={"Абитуриентам"} href={"#"} />
+    <HeaderLink text={"Студентам"} href={"#"} />
+    <HeaderLink text={"Научные работы"} href={"#"} />
     <HeaderLink text={"Кафедра"} href={"/department"} />
   </Stack>
 );
 
-const HeaderMenu = ({ drawer }) => {
-  if (!drawer) return <Menu direction={'row'}/>;
+const HeaderMenu = ({ drawer, active }) => {
+  if (!drawer) return <Menu direction={"row"} />;
 
   return (
     <DrawerMenu>
-      <Container sx={{marginTop: '10%'}}>
-        <Menu direction={'column'}/>
+      <Container sx={{ marginTop: "10%" }}>
+        <Menu direction={"column"} />
       </Container>
     </DrawerMenu>
   );
@@ -47,7 +48,7 @@ export function Header() {
         paddingTop: "1%",
         paddingLeft: "3%",
         paddingRight: "3%",
-        paddingBottom: '1%',
+        paddingBottom: "1%",
         marginBottom: "1%",
       }}
     >
@@ -57,12 +58,12 @@ export function Header() {
         alignItems="center"
       >
         {isPhone && <HeaderMenu drawer />}
-        <Link href={'/'}>
+        <Link href={"/"}>
           <Image src="/logo.svg" width={230} height={60} alt={"logo"} />
         </Link>
         {!isPhone && <HeaderMenu />}
         <Typography variant={"body2"} sx={{ width: 60 }}>
-          <Link href={"/login"} underline={"none"}>
+          <Link href={"/login"} style={{textDecoration: 'none', color: '#2148C0'}}>
             Войти
           </Link>
         </Typography>
