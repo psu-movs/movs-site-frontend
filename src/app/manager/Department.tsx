@@ -1,3 +1,5 @@
+"use client";
+
 import { DepartmentInfo } from "@/http/responseModels";
 import { Button, Container, Stack, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";

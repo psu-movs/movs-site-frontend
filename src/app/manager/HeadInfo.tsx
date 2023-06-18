@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, Container, Input, Stack, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import { DepartmentHeadInfo } from "@/http/responseModels";

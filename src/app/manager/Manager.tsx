@@ -1,3 +1,5 @@
+"use client";
+
 import ControlPanel from "@/app/manager/ControlPanel";
 import Divider from "@mui/material/Divider";
 import NewsContainer from "@/app/manager/NewsContainer";
