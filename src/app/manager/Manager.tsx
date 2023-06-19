@@ -5,6 +5,7 @@ import Divider from "@mui/material/Divider";
 import NewsContainer from "@/app/manager/NewsContainer";
 import DepartmentContainer from "@/app/manager/DepartmentContainer";
 import { Container } from "@mui/material";
+import ScienceWorksContainer from "@/app/manager/ScienceWorksContainer";
 
 export default function Manager({user, active}) {
 
@@ -14,6 +15,7 @@ export default function Manager({user, active}) {
       <Divider />
       {active === "news" && <NewsContainer />}
       {active === "department" && <DepartmentContainer />}
+      {active === "science_works" && <ScienceWorksContainer />}
     </Container>
   )
 }

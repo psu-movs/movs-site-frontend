@@ -51,6 +51,11 @@ function Menu({
             href={"/manager?active=applicants"}
             textVariant={textVariant}
           />
+          <HeaderLink
+            text="Научные работы"
+            href={"/manager?active=science_works"}
+            textVariant={textVariant}
+          />
         </>
       )}
 
