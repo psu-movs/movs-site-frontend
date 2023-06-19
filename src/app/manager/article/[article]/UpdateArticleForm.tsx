@@ -26,6 +26,7 @@ export default function UpdateArticleForm({ article }: { article: Article }) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     setDescription(article.description);
+    setDescriptionPreview(article.description_preview);
   }, [])
 
   const updateArticle = async () => {
