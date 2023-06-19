@@ -3,6 +3,7 @@
 import { Stack } from "@mui/material";
 
 const AboutInformation = ({data}) => {
+  // eslint-disable-next-line no-undef
   console.log(data)
   
   return (
