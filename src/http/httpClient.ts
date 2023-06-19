@@ -15,6 +15,8 @@ import {
   AddScienceWork,
   UpdateScienceWork
 } from "@/http/requestModels";
+import moment from "moment";
+import 'moment/locale/ru';
 
 type StringAny = {
   [key: string]: any;
@@ -167,11 +169,23 @@ export default class HTTPClient {
   }
 
   async getArticles(): Promise<Article[]> {
-    return await this.request("GET", "/news")
+    const articles: Article[] = await this.request("GET", "/news");
+    moment.locale('ru');
+
+    articles.map(article => {
+      article.creation_date = moment(article.creation_date).format("DD MMMM YYYY");
+    })
+
+    return articles;
   }
 
   async getArticle(articleID: string): Promise<Article> {
-    return await this.request("GET", `/news/${articleID}`);
+    const article: Article = await this.request("GET", `/news/${articleID}`);
+
+    moment.locale('ru');
+    article.creation_date = moment(article.creation_date).format("DD MMMM YYYY");
+
+    return article;
   }
 
   async addArticle(

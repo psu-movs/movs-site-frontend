@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react";
-import { Container, Drawer, IconButton} from "@mui/material";
+import { Box, Drawer, IconButton} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 
 export default function DrawerMenu({children}: {children: React.ReactNode}) {
@@ -11,7 +11,7 @@ export default function DrawerMenu({children}: {children: React.ReactNode}) {
   const close = () => setOpened(false)
 
   return (
-    <Container disableGutters maxWidth={false}>
+    <Box>
       <IconButton aria-label="menu" onClick={open}>
         <MenuIcon />
       </IconButton>
@@ -23,6 +23,6 @@ export default function DrawerMenu({children}: {children: React.ReactNode}) {
       >
         {children}
       </Drawer>
-    </Container>
+    </Box>
   )
 }

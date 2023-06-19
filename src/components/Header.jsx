@@ -1,10 +1,12 @@
 "use client";
 
-import { Container, Stack, Typography } from "@mui/material";
+import { Box, IconButton, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import DrawerMenu from "@/app/manager/DrawerMenu";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Link from "next/link";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useRouter } from "next/navigation";
 
 const HeaderLink = ({ text, href }) => (
   <Link style={{ textDecoration: "none", color: "#000" }} href={href}>
@@ -18,30 +20,29 @@ const Menu = ({ direction }) => (
   <Stack direction={direction} spacing={3}>
     <HeaderLink text={"Новости"} href={"/news"} />
     <HeaderLink text={"Абитуриентам"} href={"#"} />
-    <HeaderLink text={"Студентам"} href={"#"} />
     <HeaderLink text={"Научные работы"} href={"/science_works"} />
     <HeaderLink text={"Кафедра"} href={"/department"} />
   </Stack>
 );
 
-const HeaderMenu = ({ drawer, active }) => {
+const HeaderMenu = ({ drawer }) => {
   if (!drawer) return <Menu direction={"row"} />;
 
   return (
     <DrawerMenu>
-      <Container sx={{ marginTop: "10%" }}>
+      <Box sx={{ marginTop: "10%" }}>
         <Menu direction={"column"} />
-      </Container>
+      </Box>
     </DrawerMenu>
   );
 };
 
 export function Header() {
-  const isPhone = useMediaQuery("(max-width:480px)");
+  const isTablet = useMediaQuery("(max-width:960px)");
+  const router = useRouter();
 
   return (
-    <Container
-      maxWidth={false}
+    <Box
       sx={{
         backgroundColor: "#f5f5fe",
         height: "5%",
@@ -57,17 +58,26 @@ export function Header() {
         justifyContent="space-between"
         alignItems="center"
       >
-        {isPhone && <HeaderMenu drawer />}
+        {isTablet && <HeaderMenu drawer />}
         <Link href={"/"}>
           <Image src="/logo.svg" width={230} height={60} alt={"logo"} />
         </Link>
-        {!isPhone && <HeaderMenu />}
-        <Typography variant={"body2"} sx={{ width: 60 }}>
-          <Link href={"/login"} style={{textDecoration: 'none', color: '#2148C0'}}>
-            Войти
-          </Link>
-        </Typography>
+        {!isTablet && <HeaderMenu />}
+        {
+          isTablet ? (
+            <IconButton onClick={() => {router.push('/login')}}>
+              <AccountCircleIcon sx={{color: '#2148C0'}}/>
+            </IconButton>
+          ) : (
+            <Typography variant={"body2"} sx={{ width: 60 }}>
+              <Link href={"/login"} style={{textDecoration: 'none', color: '#2148C0'}}>
+                Войти
+              </Link>
+            </Typography>
+          )
+        }
+
       </Stack>
-    </Container>
+    </Box>
   );
 }

@@ -5,6 +5,7 @@ import httpClient from "@/http";
 import ScienceWorks from "./Form";
 import { ScienceWork } from "@/http/responseModels";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 export default function DepartmentPage() {
   const [ works, setWorks ] = useState<ScienceWork[]>([]);
@@ -19,6 +20,7 @@ export default function DepartmentPage() {
     <main>
       <Header />
       <ScienceWorks works={works}/>
+      <Footer />
     </main>
   );
 }
