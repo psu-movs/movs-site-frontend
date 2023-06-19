@@ -3,14 +3,17 @@ import {
   Article,
   ClientUser,
   DepartmentHeadInfo,
-  DepartmentInfo
+  DepartmentInfo,
+  ScienceWork
 } from "@/http/responseModels";
 import {
   AddDepartmentHead,
   UpdateDepartmentInfo,
   UpdateDepartmentHead,
   AddArticle,
-  UpdateArticle
+  UpdateArticle,
+  AddScienceWork,
+  UpdateScienceWork
 } from "@/http/requestModels";
 
 type StringAny = {
@@ -197,5 +200,37 @@ export default class HTTPClient {
 
   async deleteArticle(articleID: string) {
     await this.request("DELETE", `/news/${articleID}`)
+  }
+
+  async getScienceWorks(): Promise<ScienceWork[]> {
+    return await this.request("GET", "/science_works")
+  }
+
+  async addScienceWork(
+    payload: AddScienceWork
+  ): Promise<ScienceWork> {
+    const data = new FormData();
+    data.append("title", payload.title);
+    data.append("description", payload.description);
+    data.append("image", payload.image);
+
+    return await this.request("POST", "/science_works", { data });
+  }
+
+  async updateScienceWork(
+    scienceWorkID: string,
+    payload: UpdateScienceWork
+  ): Promise<ScienceWork> {
+    const data = new FormData();
+
+    if (payload.title) data.append("title", payload.title);
+    if (payload.description) data.append("description", payload.description);
+    if (payload.image) data.append("image", payload.image);
+
+    return await this.request("PATCH", `/science_works/${scienceWorkID}`, { data })
+  }
+
+  async deleteScienceWork(scienceWorkID: string) {
+    await this.request("DELETE", `/science_works/${scienceWorkID}`)
   }
 }

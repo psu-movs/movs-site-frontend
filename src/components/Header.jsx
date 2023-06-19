@@ -19,7 +19,7 @@ const Menu = ({ direction }) => (
     <HeaderLink text={"Новости"} href={"/news"} />
     <HeaderLink text={"Абитуриентам"} href={"#"} />
     <HeaderLink text={"Студентам"} href={"#"} />
-    <HeaderLink text={"Научные работы"} href={"#"} />
+    <HeaderLink text={"Научные работы"} href={"/science_works"} />
     <HeaderLink text={"Кафедра"} href={"/department"} />
   </Stack>
 );

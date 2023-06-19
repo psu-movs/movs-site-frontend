@@ -36,3 +36,15 @@ export interface UpdateArticle {
   description?: string;
   image?: File;
 }
+
+export interface AddScienceWork {
+  title: string;
+  description: string;
+  image: File;
+}
+
+export interface UpdateScienceWork {
+  title?: string;
+  description?: string;
+  image?: File;
+}

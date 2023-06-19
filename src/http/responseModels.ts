@@ -56,3 +56,10 @@ export interface Article {
   creation_date: string;
   thumbnail_url: string;
 }
+
+export interface ScienceWork {
+  _id: string;
+  title: string;
+  description: string;
+  image_url: string;
+}
