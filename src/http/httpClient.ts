@@ -2,6 +2,7 @@ import axios, { AxiosInstance, AxiosResponse, AxiosError } from "axios";
 import {
   Article,
   ClientUser,
+  Company,
   DepartmentHeadInfo,
   DepartmentInfo,
   ScienceWork
@@ -13,7 +14,9 @@ import {
   AddArticle,
   UpdateArticle,
   AddScienceWork,
-  UpdateScienceWork
+  UpdateScienceWork,
+  AddCompany,
+  UpdateCompany
 } from "@/http/requestModels";
 import moment from "moment";
 import 'moment/locale/ru';
@@ -248,5 +251,33 @@ export default class HTTPClient {
 
   async deleteScienceWork(scienceWorkID: string) {
     await this.request("DELETE", `/science_works/${scienceWorkID}`)
+  }
+
+  async getApplicantsCompanies(): Promise<Company[]> {
+    return await this.request("GET", "/applicants/companies")
+  }
+
+  async addApplicantsCompany(
+    payload: AddCompany
+  ): Promise<Company> {
+    const data = new FormData();
+    data.append("image", payload.image);
+
+    return await this.request("POST", "/applicants/companies", { data });
+  }
+
+  async updateApplicantsCompany(
+    companyID: string,
+    payload: UpdateCompany
+  ): Promise<Company> {
+    const data = new FormData();
+
+    if (payload.image) data.append("image", payload.image);
+
+    return await this.request("PATCH", `/applicants/companies/${companyID}`, { data })
+  }
+
+  async deleteApplicantsCompany(companyID: string) {
+    await this.request("DELETE", `/applicants/companies/${companyID}`)
   }
 }

@@ -39,7 +39,6 @@ export interface DepartmentInfo {
   description: Content[];
 }
 
-
 export interface DepartmentHeadInfo {
   phone: string;
   email: string;
@@ -63,5 +62,10 @@ export interface ScienceWork {
   _id: string;
   title: string;
   description: string;
+  image_url: string;
+}
+
+export interface Company {
+  _id: string;
   image_url: string;
 }
