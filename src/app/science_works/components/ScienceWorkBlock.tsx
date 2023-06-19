@@ -41,6 +41,7 @@ const ScienceWorkModal = ({
         backgroundColor: "#FFF",
         padding: "1%",
         overflow: "auto",
+        borderRadius: 2
       }}
     >
       <Typography id="modal-modal-title" variant="h6" component="h2">
@@ -55,7 +56,7 @@ const ScienceWorkBlock = ({ work }: ScienceWorkProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
   return (
-    <Card sx={{ maxWidth: 345, minWidth: 300, marginBottom: '2%' }}>
+    <Card sx={{maxWidth: "85", minWidth: 300, maxHeight: 500, marginBottom: "2%" }}>
       <CardMedia
         sx={{ height: 140 }}
         image={work.image_url}
