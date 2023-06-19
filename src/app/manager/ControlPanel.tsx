@@ -12,7 +12,11 @@ import DrawerMenu from "@/app/manager/DrawerMenu";
 import { TypographyProps } from "@mui/material/Typography";
 import Link from "next/link";
 
-const HeaderLink = ({ text, href, textVariant }) => (
+const HeaderLink = ({ text, href, textVariant }: {
+  text: string;
+  href: string;
+  textVariant: TypographyProps["variant"];
+}) => (
   <Link href={href} style={{textDecoration: "none", color: '#2148C0'}}>
     <Typography variant={textVariant}>
       {text}

@@ -6,8 +6,12 @@ import NewsContainer from "@/app/manager/NewsContainer";
 import DepartmentContainer from "@/app/manager/DepartmentContainer";
 import { Container } from "@mui/material";
 import ScienceWorksContainer from "@/app/manager/ScienceWorksContainer";
+import { ClientUser } from "@/http/responseModels";
 
-export default function Manager({user, active}) {
+export default function Manager({user, active}: {
+  user: ClientUser;
+  active: string;
+}) {
 
   return (
     <Container maxWidth={"lg"}>
