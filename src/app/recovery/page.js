@@ -1,14 +1,19 @@
+"use client";
+
 import RecoveryForm from "./Form";
-import { redirect } from "next/navigation";
-import httpClient from "@/http";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useAuth } from "@/app/context/useAuth";
 
-export default async function RecoveryPage() {
-  const response = await httpClient.getMe();
+export default function RecoveryPage() {
+  const { user } = useAuth();
+  const router = useRouter();
 
-  if (response && !response.error) {
-    redirect('/manager');
-    return;
-  }
+  useEffect(() => {
+    if (user) {
+      router.push("/manager");
+    }
+  }, []);
 
   return (
     <main>

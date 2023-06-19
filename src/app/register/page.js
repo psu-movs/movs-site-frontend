@@ -1,13 +1,19 @@
-import LoginForm from "./Form";
-import { redirect } from "next/navigation";
-import httpClient from "@/http";
+"use client";
 
-export default async function RegisterPage() {
-  const response = await httpClient.getMe();
-  if (response && !response.error) {
-    redirect('/manager');
-    return;
-  }
+import LoginForm from "./Form";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/context/useAuth";
+import { useEffect } from "react";
+
+export default function RegisterPage() {
+  const { user } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      router.push("/manager");
+    }
+  }, []);
 
   return (
     <main>

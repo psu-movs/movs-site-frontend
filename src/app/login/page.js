@@ -1,16 +1,19 @@
 "use client";
 
 import LoginForm from "./Form";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/context/useAuth";
+import { useEffect } from "react";
 
 export default function LoginPage() {
-  const {user} = useAuth();
+  const { user } = useAuth();
   const router = useRouter();
 
-  if (user) {
-    router.push("/manager")
-  }
+  useEffect(() => {
+    if (user) {
+      router.push("/manager");
+    }
+  }, []);
 
   return (
     <main>

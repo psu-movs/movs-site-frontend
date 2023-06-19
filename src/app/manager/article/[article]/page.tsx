@@ -17,22 +17,23 @@ export default function AddArticle({
   const router = useRouter();
   const [article, setArticle] = useState<Article>();
 
-  if (!user) {
-    router.push("/login");
-    return;
-  }
-
-  if (user.permissions === 0) {
-    router.push("/");
-  }
-
   useEffect(() => {
+    if (!user) {
+      router.push("/login");
+      return;
+    }
+
+    if (user.permissions === 0) {
+      router.push("/");
+      return;
+    }
+
     httpClient.getArticle(params.article).then((article) => {
       setArticle(article);
     });
   }, []);
 
-  if (!article) return;
+  if (!article || !user) return;
 
   return (
     <main>
