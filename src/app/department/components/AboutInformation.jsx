@@ -3,6 +3,7 @@
 import { Stack } from "@mui/material";
 
 const AboutInformation = ({data}) => {
+  console.log(data)
   
   return (
     <Stack>

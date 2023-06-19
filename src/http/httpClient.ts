@@ -114,7 +114,7 @@ export default class HTTPClient {
     if (response.error) return response;
 
     this.token = response.access_token;
-    window.localStorage.setItem('token', this.token);
+    window.localStorage.setItem('token', this.token as string);
 
     return null;
   }
