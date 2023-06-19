@@ -3,15 +3,20 @@ import {
   Article,
   ClientUser,
   DepartmentHeadInfo,
-  DepartmentInfo
+  DepartmentInfo,
+  ScienceWork
 } from "@/http/responseModels";
 import {
   AddDepartmentHead,
   UpdateDepartmentInfo,
   UpdateDepartmentHead,
   AddArticle,
-  UpdateArticle
+  UpdateArticle,
+  AddScienceWork,
+  UpdateScienceWork
 } from "@/http/requestModels";
+import moment from "moment";
+import 'moment/locale/ru';
 
 type StringAny = {
   [key: string]: any;
@@ -33,21 +38,21 @@ interface ErrorResponse {
 
 export default class HTTPClient {
   private client: AxiosInstance;
-  private token: string | null;
+  private token?: string | null;
 
   constructor() {
     this.client = axios.create({
       baseURL: "https://api.movs.space/v1",
     });
-    this.token = null;
+  }
+
+  setToken(token: string | null) {
+    this.token = token;
   }
 
   async request(method: string, endpoint: string, payload?: RequestPayload): Promise<any | ErrorResponse> {
-    if (!this.token) {
-      this.token = window.localStorage.getItem("token");
-    }
-
-    console.log(`[HTTP] ${method} ${endpoint} ${JSON.stringify(payload)}`)
+    console.log(`[HTTP] ${method} ${endpoint} ${JSON.stringify(payload)}`);
+    if (this.token === undefined) this.token = window.localStorage.getItem('token');
 
     let response: AxiosResponse<any, any> | undefined;
 
@@ -63,20 +68,20 @@ export default class HTTPClient {
       });
     }
     catch (error) {
-      if (error instanceof AxiosError)
+      if (error instanceof AxiosError) {
         response = error.response;
+      }
+
       else {
         throw error;
       }
     }
 
+    console.log(`[HTTP] Received a response with status code: ${response?.status}`)
+
     if (!response) return  null;
 
     if (response.status === 401) {
-      if (this.token) {
-        this.token = null;
-        window.localStorage.removeItem("token");
-      }
       return null;
     }
 
@@ -109,7 +114,7 @@ export default class HTTPClient {
     if (response.error) return response;
 
     this.token = response.access_token;
-    window.localStorage.setItem("token", response.access_token);
+    window.localStorage.setItem('token', this.token as string);
 
     return null;
   }
@@ -164,11 +169,23 @@ export default class HTTPClient {
   }
 
   async getArticles(): Promise<Article[]> {
-    return await this.request("GET", "/news")
+    const articles: Article[] = await this.request("GET", "/news");
+    moment.locale('ru');
+
+    articles.map(article => {
+      article.creation_date = moment(article.creation_date).format("DD MMMM YYYY");
+    })
+
+    return articles;
   }
 
   async getArticle(articleID: string): Promise<Article> {
-    return await this.request("GET", `/news/${articleID}`);
+    const article: Article = await this.request("GET", `/news/${articleID}`);
+
+    moment.locale('ru');
+    article.creation_date = moment(article.creation_date).format("DD MMMM YYYY");
+
+    return article;
   }
 
   async addArticle(
@@ -177,6 +194,7 @@ export default class HTTPClient {
     const data = new FormData();
     data.append("title", payload.title);
     data.append("description", payload.description);
+    data.append("description_preview", payload.descriptionPreview);
     data.append("thumbnail", payload.image);
 
     return await this.request("POST", "/news", { data });
@@ -190,6 +208,7 @@ export default class HTTPClient {
 
     if (payload.title) data.append("title", payload.title);
     if (payload.description) data.append("description", payload.description);
+    if (payload.descriptionPreview) data.append("description_preview", payload.descriptionPreview);
     if (payload.image) data.append("thumbnail", payload.image);
 
     return await this.request("PATCH", `/news/${articleID}`, {data})
@@ -197,5 +216,37 @@ export default class HTTPClient {
 
   async deleteArticle(articleID: string) {
     await this.request("DELETE", `/news/${articleID}`)
+  }
+
+  async getScienceWorks(): Promise<ScienceWork[]> {
+    return await this.request("GET", "/science_works")
+  }
+
+  async addScienceWork(
+    payload: AddScienceWork
+  ): Promise<ScienceWork> {
+    const data = new FormData();
+    data.append("title", payload.title);
+    data.append("description", payload.description);
+    data.append("image", payload.image);
+
+    return await this.request("POST", "/science_works", { data });
+  }
+
+  async updateScienceWork(
+    scienceWorkID: string,
+    payload: UpdateScienceWork
+  ): Promise<ScienceWork> {
+    const data = new FormData();
+
+    if (payload.title) data.append("title", payload.title);
+    if (payload.description) data.append("description", payload.description);
+    if (payload.image) data.append("image", payload.image);
+
+    return await this.request("PATCH", `/science_works/${scienceWorkID}`, { data })
+  }
+
+  async deleteScienceWork(scienceWorkID: string) {
+    await this.request("DELETE", `/science_works/${scienceWorkID}`)
   }
 }

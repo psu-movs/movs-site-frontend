@@ -1,4 +1,5 @@
-import { Typography } from "@mui/material";
+"use client";
+
 import { useEffect, useState } from "react";
 import HeadInfo from "@/app/manager/HeadInfo";
 import httpClient from "@/http";

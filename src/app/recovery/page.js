@@ -1,22 +1,23 @@
-"use client"
+"use client";
 
-import LoginForm from "./Form";
+import RecoveryForm from "./Form";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import isAuthorized from "@/utils/checkAuthorized";
+import { useAuth } from "@/app/context/useAuth";
 
 export default function RecoveryPage() {
-  const { push } = useRouter();
+  const { user } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
-    isAuthorized().then((res) => {
-      if (res) push("/manager");
-    });
+    if (user) {
+      router.push("/manager");
+    }
   }, []);
 
   return (
     <main>
-      <LoginForm />
+      <RecoveryForm />
     </main>
   );
 }

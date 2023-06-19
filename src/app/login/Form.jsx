@@ -1,9 +1,9 @@
 "use client";
+
 import { useState } from "react";
 import {
   Button,
   Container,
-  Link,
   Box,
   Stack,
   TextField,
@@ -13,10 +13,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
+import Link from "next/link"
 
 import AuthErrorModal from "@/components/authErrorModal";
 import httpClient from "@/http";
-import Image from "next/image";
 
 export default function LoginForm() {
   const { push } = useRouter();
@@ -49,7 +49,7 @@ export default function LoginForm() {
 
           <div style={{width: '60%'}}>
             <Link href={"/"}>
-              <Image src={"/logo.svg"} alt={"logo"}/>
+              <img src={"/logo.svg"} alt={"logo"}/>
             </Link>
           </div>
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { DepartmentInfo } from "@/http/responseModels";
 import { Button, Container, Stack, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
@@ -10,7 +12,7 @@ function EditDepartmentInfo({ data }: { data: DepartmentInfo }) {
   const [address, setAddress] = useState(data.address);
   const [phone, setPhone] = useState(data.phone);
   const [email, setEmail] = useState(data.email);
-  const [description, setDescription] = useState(data.description);
+  const [description, setDescription] = useState();
 
   const saveInfo = async () => {
     await httpClient.updateDepartmentInfo({
@@ -50,15 +52,15 @@ function EditDepartmentInfo({ data }: { data: DepartmentInfo }) {
           onChange={(element) => setEmail(element.target.value)}
           value={email}
         />
-        <TextField
-          id="description"
-          label="Описание"
-          variant="outlined"
-          multiline
-          sx={{ backgroundColor: "#FFFFFF" }}
-          onChange={(element) => setDescription(element.target.value)}
-          value={description}
-        />
+        {/*<TextField*/}
+        {/*  id="description"*/}
+        {/*  label="Описание"*/}
+        {/*  variant="outlined"*/}
+        {/*  multiline*/}
+        {/*  sx={{ backgroundColor: "#FFFFFF" }}*/}
+        {/*  onChange={(element) => setDescription(element.target.value)}*/}
+        {/*  value={description}*/}
+        {/*/>*/}
 
         <Button
           onClick={saveInfo}

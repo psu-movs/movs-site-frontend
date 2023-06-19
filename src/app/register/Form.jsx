@@ -3,7 +3,6 @@
 import {
   Button,
   Container,
-  Link,
   Box,
   Stack,
   TextField,
@@ -14,6 +13,7 @@ import { useState } from "react";
 import AuthErrorModal from "@/components/authErrorModal";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link"
 
 export default function RegisterForm() {
   const { push } = useRouter();

@@ -1,17 +1,18 @@
 "use client";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 
 import LoginForm from "./Form";
-import isAuthorized from "@/utils/checkAuthorized";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/context/useAuth";
+import { useEffect } from "react";
 
 export default function LoginPage() {
-  const { push } = useRouter();
+  const { user } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
-    isAuthorized().then((res) => {
-      if (res) push("/manager");
-    });
+    if (user) {
+      router.push("/manager");
+    }
   }, []);
 
   return (
