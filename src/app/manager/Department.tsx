@@ -12,14 +12,13 @@ function EditDepartmentInfo({ data }: { data: DepartmentInfo }) {
   const [address, setAddress] = useState(data.address);
   const [phone, setPhone] = useState(data.phone);
   const [email, setEmail] = useState(data.email);
-  const [description, setDescription] = useState();
+  // const [description, setDescription] = useState();
 
   const saveInfo = async () => {
     await httpClient.updateDepartmentInfo({
       phone,
       email,
       address,
-      description
     });
 
     router.refresh();
@@ -64,7 +63,7 @@ function EditDepartmentInfo({ data }: { data: DepartmentInfo }) {
 
         <Button
           onClick={saveInfo}
-          disabled={!description || !phone || !address || !email}
+          disabled={!phone || !address || !email}
           variant="contained"
         >
           Сохранить
