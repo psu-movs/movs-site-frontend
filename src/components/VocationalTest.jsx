@@ -5,6 +5,7 @@ import { Box, Button, Container, Stack, Typography } from "@mui/material";
 
 export default function VocationalTest() {
   const isPhone = useMediaQuery("(max-width:480px)");
+  const isTablet = useMediaQuery("(max-width:960px)");
 
   return (
     <Container maxWidth={"xl"}>
@@ -14,7 +15,7 @@ export default function VocationalTest() {
         <Stack
           position={"absolute"}
           justifyContent="space-between"
-          sx={{ padding: isPhone ? "3%" : "7%" }}
+          sx={{ padding: isPhone ? "3%" : isTablet ? "5%" : "7%" }}
         >
           <Box
             sx={{
@@ -44,7 +45,7 @@ export default function VocationalTest() {
               <Typography
                 color={"#ffffff"}
                 variant={"body2"}
-                fontSize={isPhone ? 20 : 44}
+                fontSize={isPhone ? 20 : isTablet ? 30 : 44}
               >
                 Добро пожаловать в мир науки
               </Typography>
@@ -58,7 +59,7 @@ export default function VocationalTest() {
               backgroundColor: "#fd5600",
               width: isPhone ? "180px" : "220px",
               height: isPhone ? "40px" : "55px",
-              marginTop: '5%'
+              marginTop: isTablet ? "3%" : "5%",
             }}
           >
             Пройти
