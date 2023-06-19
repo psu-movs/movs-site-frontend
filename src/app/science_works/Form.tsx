@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useEffect, useState } from "react";
 import ScienceWorkBlock from "./components/ScienceWorkBlock";
@@ -23,9 +23,17 @@ const ScienceWorks = ({works}: ScienceWorksProps) => {
 
   return (
     <Box 
-      sx={{ marginLeft: "4%", marginTop: "1%", maxWidth: '100%' }}
+      sx={{ margin: "2%",marginTop: "1%", maxWidth: '100%', display: "flex", flexDirection: "column", alignContent: "center"}}
     >
-      <Grid container spacing={1} columns={gridColumns}>
+      <Stack mb={"2%"} sx={{display: "flex", justifyContent: "center",  alignContent: "center", textAlign: "center" }}>
+        <Typography sx={{fontSize: isPhone ? 36 : 48, fontWeight: "600"}}>
+          Научные работы
+        </Typography>
+        <Typography color={"#4C4A53"} sx={{fontSize: isPhone ? 16 : 24, fontWeight: "medium"}}>
+          Здесь представлены работы наших студентов и преподавателей
+        </Typography>
+      </Stack>
+      <Grid container  spacing={3} columns={gridColumns} >
         {works.map(work => (
           <Grid item xs={3}>
             <ScienceWorkBlock key={work._id} work={work}/>
