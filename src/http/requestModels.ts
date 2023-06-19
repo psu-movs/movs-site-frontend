@@ -28,12 +28,14 @@ export interface UpdateDepartmentHead {
 export interface AddArticle {
   title: string;
   description: string;
+  descriptionPreview: string;
   image: File;
 }
 
 export interface UpdateArticle {
   title?: string;
   description?: string;
+  descriptionPreview?: string;
   image?: File;
 }
 

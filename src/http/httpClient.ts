@@ -194,6 +194,7 @@ export default class HTTPClient {
     const data = new FormData();
     data.append("title", payload.title);
     data.append("description", payload.description);
+    data.append("description_preview", payload.descriptionPreview);
     data.append("thumbnail", payload.image);
 
     return await this.request("POST", "/news", { data });
@@ -207,6 +208,7 @@ export default class HTTPClient {
 
     if (payload.title) data.append("title", payload.title);
     if (payload.description) data.append("description", payload.description);
+    if (payload.descriptionPreview) data.append("description_preview", payload.descriptionPreview);
     if (payload.image) data.append("thumbnail", payload.image);
 
     return await this.request("PATCH", `/news/${articleID}`, {data})

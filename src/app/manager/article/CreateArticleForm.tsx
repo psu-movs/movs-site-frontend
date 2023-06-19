@@ -7,10 +7,11 @@ export default function CreateArticleForm() {
   const router = useRouter();
   const [title, setTitle] = useState<string>();
   const [description, setDescription] = useState<string>();
+  const [descriptionPreview, setDescriptionPreview] = useState<string>();
   const [imageFile, setImageFile] = useState<File>();
 
   const addArticle = async () => {
-    if (!title || !description || !imageFile) {
+    if (!title || !description || !descriptionPreview || !imageFile) {
       alert("Введите все поля");
       return;
     }
@@ -18,6 +19,7 @@ export default function CreateArticleForm() {
     await httpClient.addArticle({
       title,
       description,
+      descriptionPreview,
       image: imageFile,
     });
 
@@ -48,6 +50,14 @@ export default function CreateArticleForm() {
             multiline
             sx={{ backgroundColor: "#FFFFFF" }}
             onChange={(element) => setDescription(element.target.value.trim())}
+          />
+          <TextField
+            id="description_preview"
+            label="Подводка к описанию"
+            variant="outlined"
+            multiline
+            sx={{ backgroundColor: "#FFFFFF" }}
+            onChange={(element) => setDescriptionPreview(element.target.value.trim())}
           />
 
           <Typography variant={'h5'}>
