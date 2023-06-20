@@ -7,9 +7,6 @@ import {
   Box,
   Stack,
   TextField,
-  Checkbox,
-  FormControlLabel,
-  FormGroup,
   Typography,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
@@ -71,27 +68,27 @@ export default function LoginForm() {
             onChange={(element) => setPassword(element.target.value.trim())}
           />
 
-          <Stack
-            direction="row"
-            spacing={10}
-            sx={{ alignItems: "center", justifyContent: "space-between" }}
-          >
-            <FormGroup>
-              <FormControlLabel
-                control={<Checkbox defaultChecked size={"medium"} />}
-                label={
-                  <Typography variant={"body2"}>Запомнить меня</Typography>
-                }
-              />
-            </FormGroup>
+          {/*<Stack*/}
+          {/*  direction="row"*/}
+          {/*  spacing={10}*/}
+          {/*  sx={{ alignItems: "center", justifyContent: "space-between" }}*/}
+          {/*>*/}
+          {/*  <FormGroup>*/}
+          {/*    <FormControlLabel*/}
+          {/*      control={<Checkbox defaultChecked size={"medium"} />}*/}
+          {/*      label={*/}
+          {/*        <Typography variant={"body2"}>Запомнить меня</Typography>*/}
+          {/*      }*/}
+          {/*    />*/}
+          {/*  </FormGroup>*/}
 
-            <Link
-              href={"./recovery"}
-              style={{ textDecoration: "none", color: "#2148C0" }}
-            >
-              <Typography variant={"body2"}>Забыли пароль? </Typography>
-            </Link>
-          </Stack>
+          {/*  <Link*/}
+          {/*    href={"./recovery"}*/}
+          {/*    style={{ textDecoration: "none", color: "#2148C0" }}*/}
+          {/*  >*/}
+          {/*    <Typography variant={"body2"}>Забыли пароль? </Typography>*/}
+          {/*  </Link>*/}
+          {/*</Stack>*/}
 
           <Button
             variant="contained"
