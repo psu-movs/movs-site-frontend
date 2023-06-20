@@ -52,7 +52,7 @@ export function Footer() {
               >
                 Номер телефона
               </Typography>
-              <Typography variant="body2">+8 (342) 239-67-72</Typography>
+              <Typography variant="body2">(342) 239-67-72</Typography>
             </Stack>
           </Stack>
         </Stack>

@@ -90,7 +90,7 @@ export default function RegisterForm() {
           <Box justifyContent={"center"} alignItems={"center"} display="flex">
             <Typography variant={"body2"} sx={{ color: "#616263" }}>
               У вас уже есть аккаунт?{" "}
-              <Link href={"./login"} underline={"none"}>
+              <Link href={"./login"} style={{ textDecoration: "none", color: "#2148C0" }} >
                 Войти!
               </Link>
             </Typography>

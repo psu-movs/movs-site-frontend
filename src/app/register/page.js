@@ -1,6 +1,6 @@
 "use client";
 
-import LoginForm from "./Form";
+import RegisterForm from "./Form";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/context/useAuth";
 import { useEffect } from "react";
@@ -17,7 +17,7 @@ export default function RegisterPage() {
 
   return (
     <main>
-      <LoginForm />
+      <RegisterForm />
     </main>
   );
 }

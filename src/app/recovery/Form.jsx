@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import Link from "next/link"
+import Link from "next/link";
 
 export default function RecoveryForm() {
   return (
@@ -21,9 +21,9 @@ export default function RecoveryForm() {
     >
       <Container maxWidth={"xs"}>
         <Stack spacing={3}>
-          <div style={{width: '60%'}}>
+          <div style={{ width: "60%" }}>
             <Link href={"/"}>
-              <Image src={"/logo.svg"} alt={"logo"}/>
+              <Image src={"/logo.svg"} alt={"logo"} />
             </Link>
           </div>
 
@@ -36,13 +36,20 @@ export default function RecoveryForm() {
             sx={{ backgroundColor: "#FFFFFF" }}
           />
 
-          <Button variant="contained" size={"large"} sx={{ boxShadow: 0, textTransform: 'none' }}>
+          <Button
+            variant="contained"
+            size={"large"}
+            sx={{ boxShadow: 0, textTransform: "none" }}
+          >
             Отправить письмо на почту
           </Button>
 
           <Box justifyContent={"center"} alignItems={"center"} display="flex">
-            <Typography variant={"body2"} sx={{color: '#616263'}}>
-              <Link href={"./login"} underline={"none"}>
+            <Typography variant={"body2"} sx={{ color: "#616263" }}>
+              <Link
+                href={"./login"}
+                style={{ textDecoration: "none", color: "#2148C0" }}
+              >
                 Вернуться назад
               </Link>
             </Typography>

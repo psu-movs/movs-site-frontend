@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
-import Link from "next/link"
+import Link from "next/link";
 
 import AuthErrorModal from "@/components/authErrorModal";
 import httpClient from "@/http";
@@ -33,8 +33,8 @@ export default function LoginForm() {
       return;
     }
 
-    push("/manager")
-  }
+    push("/manager");
+  };
 
   return (
     <Box
@@ -47,9 +47,9 @@ export default function LoginForm() {
         <Stack spacing={3}>
           <AuthErrorModal text={errorMessage} />
 
-          <div style={{width: '60%'}}>
+          <div style={{ width: "60%" }}>
             <Link href={"/"}>
-              <img src={"/logo.svg"} alt={"logo"}/>
+              <img src={"/logo.svg"} alt={"logo"} />
             </Link>
           </div>
 
@@ -85,11 +85,12 @@ export default function LoginForm() {
               />
             </FormGroup>
 
-            <Typography variant={"body2"}>
-              <Link href={"./recovery"} underline={"none"}>
-                Забыли пароль?{" "}
-              </Link>
-            </Typography>
+            <Link
+              href={"./recovery"}
+              style={{ textDecoration: "none", color: "#2148C0" }}
+            >
+              <Typography variant={"body2"}>Забыли пароль? </Typography>
+            </Link>
           </Stack>
 
           <Button
@@ -105,7 +106,10 @@ export default function LoginForm() {
           <Box justifyContent={"center"} alignItems={"center"} display="flex">
             <Typography variant={"body2"} sx={{ color: "#616263" }}>
               У вас еще нет аккаунта?{" "}
-              <Link href={"./register"} underline={"none"}>
+              <Link
+                href={"./register"}
+                style={{ textDecoration: "none", color: "#2148C0" }}
+              >
                 Зарегистрироваться!
               </Link>
             </Typography>
