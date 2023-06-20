@@ -11,7 +11,7 @@ const ArticleBlock = ({article}) =>  {
       paddingTop={"1%"}
       paddingBottom={"3%"}
       alignItems="left"
-      width={'90%'}
+      width={'100%'}
       sx={{
         '&:hover': {opacity: [0.8]}
       }}

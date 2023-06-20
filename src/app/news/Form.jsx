@@ -19,9 +19,9 @@ export default function NewsList({news}) {
   return (
     <Box 
       disableGutters
-      sx={{ marginLeft: "4%", marginTop: "1%", maxWidth: '100%' }}
+      sx={{ margin: "4%", maxWidth: '100%' }}
     >
-      <Grid container spacing={1} columns={gridColumns}>
+      <Grid container spacing={isPhone ? 2 : 3} columns={gridColumns}>
         {news.map(article => (
           <Grid item xs={3} key={article}>
             <Link href={`/news/${article._id}`} style={{textDecoration: 'none'}}>
