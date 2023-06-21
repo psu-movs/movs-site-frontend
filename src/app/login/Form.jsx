@@ -14,9 +14,11 @@ import Link from "next/link";
 
 import AuthErrorModal from "@/components/authErrorModal";
 import httpClient from "@/http";
+import { useAuth } from "../context/useAuth";
 
 export default function LoginForm() {
   const { push } = useRouter();
+  const { setUser } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,7 +31,7 @@ export default function LoginForm() {
       setErrorMessage(response.error.message);
       return;
     }
-
+    setUser(await httpClient.getMe());
     push("/manager");
   };
 
