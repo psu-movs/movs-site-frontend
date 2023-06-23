@@ -1,7 +1,7 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import httpClient from "@/http";
-import NewsList from "./Form";
+import NewsList from "./NewsList";
 
 export default async function NewsPage() {
   const news = await httpClient.getArticles()

@@ -18,7 +18,6 @@ export default function NewsList({news}) {
 
   return (
     <Box 
-      disableGutters
       sx={{ margin: "4%", maxWidth: '100%' }}
     >
       <Grid container spacing={isPhone ? 2 : 3} columns={gridColumns}>
