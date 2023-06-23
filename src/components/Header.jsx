@@ -23,7 +23,7 @@ const HeaderLink = ({ text, href }) => (
 const Menu = ({ direction }) => (
   <Stack direction={direction} spacing={3}>
     <HeaderLink text={"Новости"} href={"/news"} />
-    <HeaderLink text={"Абитуриентам"} href={"#"} />
+    <HeaderLink text={"Абитуриентам"} href={"/applicants"} />
     <HeaderLink text={"Научные работы"} href={"/science_works"} />
     <HeaderLink text={"Кафедра"} href={"/department"} />
   </Stack>
