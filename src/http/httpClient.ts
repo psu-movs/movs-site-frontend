@@ -52,8 +52,6 @@ export default class HTTPClient {
 
   async request(method: string, endpoint: string, payload?: RequestPayload): Promise<any | ErrorResponse> {
     console.log(`[HTTP] ${method} ${endpoint} ${JSON.stringify(payload)}`);
-    if (this.token === undefined) this.token = window.localStorage.getItem('token');
-
     let response: AxiosResponse<any, any> | undefined;
 
     try {

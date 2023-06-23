@@ -1,6 +1,8 @@
 "use client";
 
-import { Box, Grid, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 import LatestArticle from "./LatestArticle";
 import Article from "./Article";
 import useMediaQuery from "@mui/material/useMediaQuery";

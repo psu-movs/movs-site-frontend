@@ -1,6 +1,9 @@
 "use client";
 
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useEffect, useState } from "react";
 import ScienceWorkBlock from "./components/ScienceWorkBlock";

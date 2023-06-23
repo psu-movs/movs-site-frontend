@@ -1,4 +1,6 @@
-import { Box, Stack, Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Article } from "@/http/responseModels";
 import Link from "next/link";
@@ -7,7 +9,10 @@ export default function Article({ article }: { article: Article }) {
   const match = useMediaQuery("(max-width:1700px)");
 
   return (
-    <Link style={{ textDecoration: "none", color: 'inherit' }} href={`/news/${article._id}`}>
+    <Link
+      style={{ textDecoration: "none", color: "inherit" }}
+      href={`/news/${article._id}`}
+    >
       <Stack
         alignItems="left"
         width={"85%"}

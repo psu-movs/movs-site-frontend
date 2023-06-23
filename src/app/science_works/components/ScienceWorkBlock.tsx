@@ -1,16 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Stack,
-  Modal,
-  Typography,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Button,
-} from "@mui/material";
+import Stack from "@mui/material/Stack";
+import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+
 import { ScienceWork } from "@/http/responseModels";
 
 interface ScienceWorkProps {
