@@ -24,12 +24,6 @@ const UserCard = (params: { user: User }) => {
   const [user, setUser] = useState<User>(params.user);
   const authContext = useAuth();
 
-  useEffect(() => {
-    if (authContext.user?.permissions !== UserPermissions.administrator) {
-      router.push('/manager')
-    }
-  }, []);
-
   const updateUserPermissions = async (permission: UserPermissions) => {
     let permissions = user.permissions;
 
@@ -82,6 +76,24 @@ const UserCard = (params: { user: User }) => {
 };
 
 export default function UserList({ users }: { users: User[] }) {
+  const {user} = useAuth();
+  const router = useRouter();
+
+  // Невозможно поставить в родительский компонент. Так как он серверный, а useAuth используется только в клиентских :(
+  useEffect(() => {
+    if (!user) {
+      router.push("/");
+      return;
+    }
+
+    if (
+      (user.permissions & UserPermissions.administrator) !==
+      UserPermissions.administrator
+    ) {
+      router.push("/manager");
+    }
+  }, [user]);
+
   return (
     <Box>
       <Stack spacing={2}>
