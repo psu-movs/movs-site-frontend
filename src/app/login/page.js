@@ -13,7 +13,7 @@ export default function LoginPage() {
     if (user) {
       router.push("/manager");
     }
-  }, []);
+  }, [user]);
 
   return (
     <main>

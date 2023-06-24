@@ -13,7 +13,7 @@ export default function RegisterPage() {
     if (user) {
       router.push("/manager");
     }
-  }, []);
+  }, [user]);
 
   return (
     <main>
