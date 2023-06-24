@@ -1,12 +1,12 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosError } from "axios";
 import {
   Article,
-  ClientUser,
+  User,
   Company,
   DepartmentHeadInfo,
   DepartmentInfo,
   EntryInfo,
-  ScienceWork,
+  ScienceWork, UserPermissions
 } from "@/http/responseModels";
 import {
   AddDepartmentHead,
@@ -44,7 +44,7 @@ export default class HTTPClient {
 
   constructor() {
     this.client = axios.create({
-      baseURL: "https://api.movs.space/v1",
+      baseURL: "http://127.0.0.1:8000/v1",
     });
   }
 
@@ -122,7 +122,7 @@ export default class HTTPClient {
     return null;
   }
 
-  async getMe(): Promise<ClientUser & ErrorResponse> {
+  async getMe(): Promise<User & ErrorResponse> {
     return await this.request("GET", "/users/me");
   }
 
@@ -279,5 +279,13 @@ export default class HTTPClient {
     await this.request("PUT", `/applicants/entry_info`, {
       data: payload,
     });
+  }
+
+  async updateUserPermissions(user_id: string, permissions: UserPermissions) {
+    await this.request("PATCH", `/users/${user_id}`, {params: {permissions}})
+  }
+
+  async getAllUsers(): Promise<User[]> {
+    return await this.request("GET", "/users")
   }
 }

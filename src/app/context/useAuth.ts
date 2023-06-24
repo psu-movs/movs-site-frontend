@@ -1,9 +1,9 @@
 import { createContext, useContext, Dispatch, SetStateAction } from "react";
-import { ClientUser } from "@/http/responseModels";
+import { User } from "@/http/responseModels";
 
 interface IContext {
-  user?: ClientUser;
-  setUser?: Dispatch<SetStateAction<ClientUser | undefined>>;
+  user?: User;
+  setUser?: Dispatch<SetStateAction<User | undefined>>;
 }
 
 export const AuthContext = createContext<IContext>({});

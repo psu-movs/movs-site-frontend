@@ -6,8 +6,9 @@ export enum UserPermissions {
   administrator = 1 << 3
 }
 
-export interface ClientUser {
-  full_name: string;
+export interface User {
+  _id: string;
+  username: string;
   email: string;
   permissions: UserPermissions;
 }

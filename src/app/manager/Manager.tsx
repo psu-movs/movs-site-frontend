@@ -6,11 +6,12 @@ import NewsContainer from "@/app/manager/NewsContainer";
 import DepartmentContainer from "@/app/manager/DepartmentContainer";
 import { Container } from "@mui/material";
 import ScienceWorksContainer from "@/app/manager/ScienceWorksContainer";
-import { ClientUser } from "@/http/responseModels";
+import { User } from "@/http/responseModels";
 import Applicants from "@/app/manager/Applicants";
+import ManageUsers from "@/app/manager/ManageUsers";
 
 export default function Manager({user, active}: {
-  user: ClientUser;
+  user: User;
   active: string;
 }) {
 
@@ -22,6 +23,7 @@ export default function Manager({user, active}: {
       {active === "department" && <DepartmentContainer />}
       {active === "science_works" && <ScienceWorksContainer />}
       {active === "applicants" && <Applicants />}
+      {active === "users" && <ManageUsers />}
     </Container>
   )
 }
