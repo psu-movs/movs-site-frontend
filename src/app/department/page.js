@@ -1,5 +1,5 @@
 import httpClient from "@/http";
-import Department from "./Form";
+import Department from "./Department";
 import { Header } from "@/components/Header";
 
 export default async function DepartmentPage() {

@@ -35,7 +35,7 @@ export interface DepartmentInfo {
   phone: string;
   email: string;
   address: string;
-  description: Content[];
+  description: string;
 }
 
 export interface DepartmentHeadInfo {
