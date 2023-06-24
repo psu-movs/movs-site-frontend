@@ -6,7 +6,6 @@ import httpClient from "@/http";
 
 export default async function Home() {
  const news = await httpClient.getArticles();
-
   return (
     <main>
       <Header />

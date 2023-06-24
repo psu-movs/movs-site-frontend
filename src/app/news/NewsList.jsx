@@ -1,6 +1,7 @@
 "use client"
 
-import { Box, Grid } from "@mui/material";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useEffect, useState } from "react";
 import ArticleBlock from "./components/ArticleBlock";

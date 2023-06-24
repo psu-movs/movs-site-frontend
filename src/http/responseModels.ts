@@ -67,3 +67,8 @@ export interface Company {
   _id: string;
   image_url: string;
 }
+
+export interface EntryInfo {
+  entry_start_date_info: string;
+  documents: string;
+}

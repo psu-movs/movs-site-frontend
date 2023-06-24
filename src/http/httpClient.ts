@@ -5,7 +5,8 @@ import {
   Company,
   DepartmentHeadInfo,
   DepartmentInfo,
-  ScienceWork
+  EntryInfo,
+  ScienceWork,
 } from "@/http/responseModels";
 import {
   AddDepartmentHead,
@@ -15,11 +16,9 @@ import {
   UpdateArticle,
   AddScienceWork,
   UpdateScienceWork,
-  AddCompany,
-  UpdateCompany
 } from "@/http/requestModels";
 import moment from "moment";
-import 'moment/locale/ru';
+import "moment/locale/ru";
 
 type StringAny = {
   [key: string]: any;
@@ -36,7 +35,7 @@ interface ErrorPayload {
 }
 
 interface ErrorResponse {
-  error: ErrorPayload
+  error: ErrorPayload;
 }
 
 export default class HTTPClient {
@@ -53,7 +52,11 @@ export default class HTTPClient {
     this.token = token;
   }
 
-  async request(method: string, endpoint: string, payload?: RequestPayload): Promise<any | ErrorResponse> {
+  async request(
+    method: string,
+    endpoint: string,
+    payload?: RequestPayload
+  ): Promise<any | ErrorResponse> {
     console.log(`[HTTP] ${method} ${endpoint} ${JSON.stringify(payload)}`);
     let response: AxiosResponse<any, any> | undefined;
 
@@ -67,20 +70,19 @@ export default class HTTPClient {
           Authorization: this.token !== null && `Bearer ${this.token}`,
         },
       });
-    }
-    catch (error) {
+    } catch (error) {
       if (error instanceof AxiosError) {
         response = error.response;
-      }
-
-      else {
+      } else {
         throw error;
       }
     }
 
-    console.log(`[HTTP] Received a response with status code: ${response?.status}`)
+    console.log(
+      `[HTTP] Received a response with status code: ${response?.status}`
+    );
 
-    if (!response) return  null;
+    if (!response) return null;
 
     if (response.status === 401) {
       return null;
@@ -91,9 +93,9 @@ export default class HTTPClient {
     return {
       error: {
         code: response.status,
-        message: response.data.detail
-      }
-    }
+        message: response.data.detail,
+      },
+    };
   }
 
   async register(username: string, email: string, password: string) {
@@ -115,7 +117,7 @@ export default class HTTPClient {
     if (response.error) return response;
 
     this.token = response.access_token;
-    window.localStorage.setItem('token', this.token as string);
+    window.localStorage.setItem("token", this.token as string);
 
     return null;
   }
@@ -171,11 +173,13 @@ export default class HTTPClient {
 
   async getArticles(): Promise<Article[]> {
     const articles: Article[] = await this.request("GET", "/news");
-    moment.locale('ru');
+    moment.locale("ru");
 
-    articles.map(article => {
-      article.creation_date = moment(article.creation_date).format("DD MMMM YYYY");
-    })
+    articles.map((article) => {
+      article.creation_date = moment(article.creation_date).format(
+        "DD MMMM YYYY"
+      );
+    });
 
     return articles;
   }
@@ -183,15 +187,15 @@ export default class HTTPClient {
   async getArticle(articleID: string): Promise<Article> {
     const article: Article = await this.request("GET", `/news/${articleID}`);
 
-    moment.locale('ru');
-    article.creation_date = moment(article.creation_date).format("DD MMMM YYYY");
+    moment.locale("ru");
+    article.creation_date = moment(article.creation_date).format(
+      "DD MMMM YYYY"
+    );
 
     return article;
   }
 
-  async addArticle(
-    payload: AddArticle
-  ): Promise<Article> {
+  async addArticle(payload: AddArticle): Promise<Article> {
     const data = new FormData();
     data.append("title", payload.title);
     data.append("description", payload.description);
@@ -209,23 +213,22 @@ export default class HTTPClient {
 
     if (payload.title) data.append("title", payload.title);
     if (payload.description) data.append("description", payload.description);
-    if (payload.descriptionPreview) data.append("description_preview", payload.descriptionPreview);
+    if (payload.descriptionPreview)
+      data.append("description_preview", payload.descriptionPreview);
     if (payload.image) data.append("thumbnail", payload.image);
 
-    return await this.request("PATCH", `/news/${articleID}`, {data})
+    return await this.request("PATCH", `/news/${articleID}`, { data });
   }
 
   async deleteArticle(articleID: string) {
-    await this.request("DELETE", `/news/${articleID}`)
+    await this.request("DELETE", `/news/${articleID}`);
   }
 
   async getScienceWorks(): Promise<ScienceWork[]> {
-    return await this.request("GET", "/science_works")
+    return await this.request("GET", "/science_works");
   }
 
-  async addScienceWork(
-    payload: AddScienceWork
-  ): Promise<ScienceWork> {
+  async addScienceWork(payload: AddScienceWork): Promise<ScienceWork> {
     const data = new FormData();
     data.append("title", payload.title);
     data.append("description", payload.description);
@@ -244,38 +247,37 @@ export default class HTTPClient {
     if (payload.description) data.append("description", payload.description);
     if (payload.image) data.append("image", payload.image);
 
-    return await this.request("PATCH", `/science_works/${scienceWorkID}`, { data })
+    return await this.request("PATCH", `/science_works/${scienceWorkID}`, {
+      data,
+    });
   }
 
   async deleteScienceWork(scienceWorkID: string) {
-    await this.request("DELETE", `/science_works/${scienceWorkID}`)
+    await this.request("DELETE", `/science_works/${scienceWorkID}`);
   }
 
   async getApplicantsCompanies(): Promise<Company[]> {
-    return await this.request("GET", "/applicants/companies")
+    return await this.request("GET", "/applicants/companies");
   }
 
-  async addApplicantsCompany(
-    payload: AddCompany
-  ): Promise<Company> {
+  async addApplicantsCompany(image: File): Promise<Company> {
     const data = new FormData();
-    data.append("image", payload.image);
+    data.append("image", image);
 
     return await this.request("POST", "/applicants/companies", { data });
   }
 
-  async updateApplicantsCompany(
-    companyID: string,
-    payload: UpdateCompany
-  ): Promise<Company> {
-    const data = new FormData();
-
-    if (payload.image) data.append("image", payload.image);
-
-    return await this.request("PATCH", `/applicants/companies/${companyID}`, { data })
+  async deleteApplicantsCompany(companyID: string) {
+    await this.request("DELETE", `/applicants/companies/${companyID}`);
   }
 
-  async deleteApplicantsCompany(companyID: string) {
-    await this.request("DELETE", `/applicants/companies/${companyID}`)
+  async getApplicantsEntryInfo(): Promise<EntryInfo> {
+    return await this.request("GET", `/applicants/entry_info`);
+  }
+
+  async updateApplicantsEntryInfo(payload: EntryInfo) {
+    await this.request("PUT", `/applicants/entry_info`, {
+      data: payload,
+    });
   }
 }

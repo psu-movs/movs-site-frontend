@@ -50,11 +50,3 @@ export interface UpdateScienceWork {
   description?: string;
   image?: File;
 }
-
-export interface AddCompany {
-  image: File;
-}
-
-export interface UpdateCompany {
-  image?: File;
-}

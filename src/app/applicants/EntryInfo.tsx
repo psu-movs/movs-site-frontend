@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-export default function EntryInfo() {
+export default function EntryInfo({info}: {info: string}) {
   const isTablet = useMediaQuery("(max-width:960px)");
   const isPhone = useMediaQuery("(max-width:480px)");
 
@@ -60,10 +60,7 @@ export default function EntryInfo() {
             Прием документов на обучение по программам ПГНИУ
           </Typography>
           <Typography sx={{marginTop: '2%'}}>
-            В 2023 году прием документов начнется 20 июня. Документы на
-            бюджетные места очной формы можно подать до 25 июля. Для
-            абитуриентов, которые поступают на договорной основе, заявления
-            принимаются до 12 августа.
+            {info}
           </Typography>
         </Stack>
       </Box>
