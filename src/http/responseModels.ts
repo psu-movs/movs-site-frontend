@@ -13,24 +13,6 @@ export interface User {
   permissions: UserPermissions;
 }
 
-export enum ContentType {
-  text,
-  image,
-  text_with_image
-}
-
-export interface Image {
-  url: string;
-  label: string;
-}
-
-export interface Content {
-  type: ContentType;
-  meta?: unknown;
-  content?: string;
-  image?: Image;
-}
-
 export interface DepartmentInfo {
   phone: string;
   email: string;
