@@ -77,7 +77,7 @@ function EditDepartmentInfo({ data }: { data: DepartmentInfo }) {
 export default function Department({data}: {data: DepartmentInfo}) {
 
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} sx={{marginTop: '2%'}}>
       <Typography variant={"h4"}>
         Редактирование информации о кафедре
       </Typography>

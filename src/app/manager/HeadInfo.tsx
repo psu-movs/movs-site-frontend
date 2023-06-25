@@ -64,6 +64,11 @@ function EditHeadInfo({ data }: { data: DepartmentHeadInfo }) {
           onChange={(element) => setEmail(element.target.value)}
           value={email}
         />
+
+        <Typography variant={"h6"}>
+          Изображение
+        </Typography>
+
         <Input
           type={"file"}
           onChange={(element) => {
@@ -98,8 +103,8 @@ export default function HeadInfo({ data }: { data: DepartmentHeadInfo }) {
         <Image
           src={data.photo_url}
           alt={"department_head_image"}
-          width={250}
-          height={250}
+          width={150}
+          height={200}
         />
 
         <EditHeadInfo data={data} />

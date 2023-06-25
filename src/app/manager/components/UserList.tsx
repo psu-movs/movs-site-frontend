@@ -95,7 +95,7 @@ export default function UserList({ users }: { users: User[] }) {
   }, [user]);
 
   return (
-    <Box>
+    <Box sx={{marginTop: '3%'}}>
       <Stack spacing={2}>
         {users.map((user) => (
           <UserCard user={user} key={user._id} />
