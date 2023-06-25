@@ -20,6 +20,7 @@ export function Footer() {
         paddingRight: "3%",
         paddingBottom: "2%",
         marginTop: "2%",
+        flex: 1
       }}
     >
       <Stack
