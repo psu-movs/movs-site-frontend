@@ -20,7 +20,6 @@ export default function News({ news }) {
 
   return (
     <Box
-      disableGutters
       sx={{ marginLeft: "4%", marginTop: "1%", maxWidth: "100%" }}
     >
       <Typography
@@ -35,8 +34,8 @@ export default function News({ news }) {
 
       <Grid container spacing={1} columns={gridColumns} sx={!isTablet ? {marginTop: '2%'} : undefined}>
         {news.slice(!isTablet ? 1 : 0).map((article) => (
-          <Grid item xs={4} key={article}>
-            <Article key={article} article={article} />
+          <Grid item xs={4} key={article._id}>
+            <Article article={article} />
           </Grid>
         ))}
       </Grid>
