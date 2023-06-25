@@ -23,13 +23,6 @@ const defaultTheme = createTheme(
       primary: {
         main: "#2148C0",
       },
-    },
-    components: {
-      MuiUseMediaQuery: {
-        defaultProps: {
-          noSsr: true
-        }
-      }
     }
   },
   {} satisfies ThemeOptions
