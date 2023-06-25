@@ -27,7 +27,9 @@ export default function Applicants() {
 
     if (
       (user.permissions & UserPermissions.manageInfo) !==
-      UserPermissions.manageInfo
+        UserPermissions.manageInfo ||
+      (user.permissions & UserPermissions.administrator) !==
+        UserPermissions.administrator
     ) {
       router.push("/manager");
       return;
@@ -39,7 +41,7 @@ export default function Applicants() {
   }, []);
 
   if (!companies || !entryInfo) return;
-  console.log(entryInfo)
+
   return (
     <>
       <ApplicantsCompanies companies={companies} />

@@ -3,7 +3,11 @@
 import { useEffect, useState } from "react";
 import HeadInfo from "@/app/manager/HeadInfo";
 import httpClient from "@/http";
-import { DepartmentHeadInfo, DepartmentInfo, UserPermissions } from "@/http/responseModels";
+import {
+  DepartmentHeadInfo,
+  DepartmentInfo,
+  UserPermissions,
+} from "@/http/responseModels";
 import Department from "@/app/manager/Department";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/context/useAuth";
@@ -15,10 +19,13 @@ export default function DepartmentContainer() {
   const { user } = useAuth();
 
   const fetchData = async () => {
-    const [depInfo, headInfo] = await Promise.all([httpClient.getDepartmentInfo(), httpClient.getDepartmentHead()])
+    const [depInfo, headInfo] = await Promise.all([
+      httpClient.getDepartmentInfo(),
+      httpClient.getDepartmentHead(),
+    ]);
     setInfo(depInfo);
     setHead(headInfo);
-  }
+  };
 
   useEffect(() => {
     if (!user) {
@@ -28,7 +35,9 @@ export default function DepartmentContainer() {
 
     if (
       (user.permissions & UserPermissions.manageInfo) !==
-      UserPermissions.manageInfo
+        UserPermissions.manageInfo ||
+      (user.permissions & UserPermissions.administrator) !==
+        UserPermissions.administrator
     ) {
       router.push("/manager");
       return;
@@ -36,13 +45,13 @@ export default function DepartmentContainer() {
   }, [user]);
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   return (
     <>
-      {head && <HeadInfo data={head}/>}
+      {head && <HeadInfo data={head} />}
       {info && <Department data={info} />}
     </>
-  )
+  );
 }
