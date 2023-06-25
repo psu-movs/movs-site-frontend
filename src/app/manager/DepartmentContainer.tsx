@@ -35,7 +35,7 @@ export default function DepartmentContainer() {
 
     if (
       (user.permissions & UserPermissions.manageInfo) !==
-        UserPermissions.manageInfo ||
+        UserPermissions.manageInfo &&
       (user.permissions & UserPermissions.administrator) !==
         UserPermissions.administrator
     ) {

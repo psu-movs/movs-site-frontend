@@ -27,7 +27,7 @@ export default function Applicants() {
 
     if (
       (user.permissions & UserPermissions.manageInfo) !==
-        UserPermissions.manageInfo ||
+        UserPermissions.manageInfo &&
       (user.permissions & UserPermissions.administrator) !==
         UserPermissions.administrator
     ) {

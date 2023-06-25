@@ -83,7 +83,7 @@ export default function NewsContainer() {
 
     if (
       (user.permissions & UserPermissions.manageNews) !==
-        UserPermissions.manageNews ||
+        UserPermissions.manageNews &&
       (user.permissions & UserPermissions.administrator) !==
         UserPermissions.administrator
     ) {
