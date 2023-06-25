@@ -79,6 +79,7 @@ export default function UpdateArticleForm({ article }: { article: Article }) {
           multiline
           sx={{ backgroundColor: "#FFFFFF" }}
           onChange={(element) => setDescriptionPreview(element.target.value.trim())}
+          value={descriptionPreview}
         />
 
         <Typography variant={'h5'}>
