@@ -22,7 +22,7 @@ const ArticleBlock = ({article}) =>  {
         spacing={2}
         direction={"row"}
         alignItems={"center"}
-        justifyContent={"center"}
+        justifyContent={"flex-start"}
         paddingTop={"1%"}
       >
         <Box>
