@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import httpClient from "@/http";
-import { ScienceWork } from "@/http/responseModels";
+import { ScienceWork, UserPermissions } from "@/http/responseModels";
 import {
   Box,
   Button,
@@ -17,6 +17,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/context/useAuth";
 
 function ScienceWorkCard({
   scienceWork,
@@ -56,6 +57,7 @@ function ScienceWorkCard({
 
 export default function ScienceWorksContainer() {
   const router = useRouter();
+  const { user } = useAuth();
   const [scienceWorks, setScienceWorks] = useState<ScienceWork[]>([]);
 
   const deleteScienceWork = async (deleted: ScienceWork) => {
@@ -69,6 +71,21 @@ export default function ScienceWorksContainer() {
   const fetchNews = async () => {
     setScienceWorks(await httpClient.getScienceWorks());
   };
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+      return;
+    }
+
+    if (
+      (user.permissions & UserPermissions.manageInfo) !==
+      UserPermissions.manageInfo
+    ) {
+      router.push("/manager");
+      return;
+    }
+  }, [user]);
 
   useEffect(() => {
     fetchNews();

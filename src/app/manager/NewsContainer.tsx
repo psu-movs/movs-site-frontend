@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import httpClient from "@/http";
-import { Article } from "@/http/responseModels";
+import { Article, UserPermissions } from "@/http/responseModels";
 import {
   Box,
   Button,
@@ -17,6 +17,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/context/useAuth";
 
 function ArticleCard({
   article,
@@ -61,6 +62,7 @@ function ArticleCard({
 export default function NewsContainer() {
   const router = useRouter();
   const [news, setNews] = useState<Article[]>([]);
+  const { user } = useAuth();
 
   const deleteArticle = async (deletedArticle: Article) => {
     await httpClient.deleteArticle(deletedArticle._id);
@@ -74,8 +76,23 @@ export default function NewsContainer() {
   };
 
   useEffect(() => {
-    fetchNews();
-  }, []);
+    if (!user) {
+      router.push("/login");
+      return;
+    }
+
+    if (
+      (user.permissions & UserPermissions.manageNews) !==
+      UserPermissions.manageNews
+    ) {
+      router.push("/manager");
+      return;
+    }
+
+    if (news.length === 0) {
+      fetchNews();
+    }
+  }, [user]);
 
   return (
     <Box>
