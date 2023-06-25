@@ -12,8 +12,9 @@ import httpClient from "@/http";
 import { useState } from "react";
 import AuthErrorModal from "@/components/authErrorModal";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link"
+import Link from "next/link";
+
+const re = /.+@.+\..+/;
 
 export default function RegisterForm() {
   const { push } = useRouter();
@@ -45,9 +46,9 @@ export default function RegisterForm() {
         <Stack spacing={3}>
           <AuthErrorModal text={errorMessage} />
 
-          <div style={{width: '60%'}}>
+          <div style={{ width: "60%" }}>
             <Link href={"/"}>
-              <Image src={"/logo.svg"} alt={"logo"}/>
+              <img src={"/logo.svg"} alt={"logo"} />
             </Link>
           </div>
 
@@ -67,6 +68,7 @@ export default function RegisterForm() {
             variant="outlined"
             sx={{ backgroundColor: "#FFFFFF" }}
             onChange={(element) => setEmail(element.target.value.trim())}
+            error={email && !email.match(re)}
           />
           <TextField
             id="password"
@@ -75,6 +77,7 @@ export default function RegisterForm() {
             type={"password"}
             sx={{ backgroundColor: "#FFFFFF" }}
             onChange={(element) => setPassword(element.target.value.trim())}
+            error={password && password.length < 8}
           />
 
           <Button
@@ -82,7 +85,13 @@ export default function RegisterForm() {
             size={"large"}
             sx={{ boxShadow: 0, textTransform: "none" }}
             onClick={onButtonClick}
-            disabled={!username || !email || !password}
+            disabled={
+              !username ||
+              !email ||
+              !password ||
+              !email.match(re) ||
+              password.length < 8
+            }
           >
             Зарегистрироваться
           </Button>
@@ -90,7 +99,10 @@ export default function RegisterForm() {
           <Box justifyContent={"center"} alignItems={"center"} display="flex">
             <Typography variant={"body2"} sx={{ color: "#616263" }}>
               У вас уже есть аккаунт?{" "}
-              <Link href={"./login"} style={{ textDecoration: "none", color: "#2148C0" }} >
+              <Link
+                href={"./login"}
+                style={{ textDecoration: "none", color: "#2148C0" }}
+              >
                 Войти!
               </Link>
             </Typography>

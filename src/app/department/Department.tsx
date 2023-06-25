@@ -1,17 +1,17 @@
 "use client";
+import "@/app/applicants/documents.style.css";
 
-import {
-  Container,
-  Link,
-  Box,
-  Stack,
-  Typography,
-} from "@mui/material";
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+
 import { DepartmentInfo, DepartmentHeadInfo } from '@/http/responseModels';
 import Image from "next/image";
 import ContactInformation from "./components/ContactInformation";
 import HeadInformation from './components/HeadInformation';
-import AboutInformation from './components/AboutInformation';
+import ReactMarkdown from "react-markdown";
 
 interface DepartmentProps {
   data: DepartmentInfo;
@@ -56,7 +56,9 @@ const Department = ({data, head}: DepartmentProps) => {
           <Typography variant={"h6"}>
             О кафедре
           </Typography>
-          <AboutInformation data={undefined} />
+          <ReactMarkdown className={"markdown-text"}>
+            {data.description}
+          </ReactMarkdown>
         </Box>
       </Stack>
     </Container>

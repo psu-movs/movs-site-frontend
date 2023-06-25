@@ -13,7 +13,7 @@ export default function RecoveryPage() {
     if (user) {
       router.push("/manager");
     }
-  }, []);
+  }, [user]);
 
   return (
     <main>

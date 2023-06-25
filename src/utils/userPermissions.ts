@@ -1,12 +1,12 @@
-import { ClientUser, UserPermissions } from "@/http/responseModels";
+import { User, UserPermissions } from "@/http/responseModels";
 
-export const isAdmin = (user: ClientUser) => user.permissions & UserPermissions.administrator;
+export const isAdmin = (user: User) => user.permissions & UserPermissions.administrator;
 
-export const hasManageNewsPermission = (user: ClientUser) =>
+export const hasManageNewsPermission = (user: User) =>
   user.permissions & UserPermissions.manageNews || isAdmin;
 
-export const hasManageTeachersPermission = (user: ClientUser) =>
+export const hasManageTeachersPermission = (user: User) =>
   user.permissions & UserPermissions.manageTeachers || isAdmin;
 
-export const hasManageInfoPermission = (user: ClientUser) =>
+export const hasManageInfoPermission = (user: User) =>
   user.permissions & UserPermissions.manageInfo || isAdmin;

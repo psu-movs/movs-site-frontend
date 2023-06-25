@@ -6,37 +6,19 @@ export enum UserPermissions {
   administrator = 1 << 3
 }
 
-export interface ClientUser {
-  full_name: string;
+export interface User {
+  _id: string;
+  username: string;
   email: string;
   permissions: UserPermissions;
-}
-
-export enum ContentType {
-  text,
-  image,
-  text_with_image
-}
-
-export interface Image {
-  url: string;
-  label: string;
-}
-
-export interface Content {
-  type: ContentType;
-  meta?: unknown;
-  content?: string;
-  image?: Image;
 }
 
 export interface DepartmentInfo {
   phone: string;
   email: string;
   address: string;
-  description: Content[];
+  description: string;
 }
-
 
 export interface DepartmentHeadInfo {
   phone: string;
@@ -62,4 +44,14 @@ export interface ScienceWork {
   title: string;
   description: string;
   image_url: string;
+}
+
+export interface Company {
+  _id: string;
+  image_url: string;
+}
+
+export interface EntryInfo {
+  entry_start_date_info: string;
+  documents: string;
 }

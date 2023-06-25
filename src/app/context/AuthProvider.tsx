@@ -2,11 +2,11 @@
 
 import { AuthContext } from "./useAuth";
 import { ReactNode, useEffect, useState } from "react";
-import { ClientUser } from "@/http/responseModels";
+import { User } from "@/http/responseModels";
 import httpClient from "@/http";
 
 const AuthContextProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<ClientUser>();
+  const [user, setUser] = useState<User>();
 
   useEffect(() => {
     httpClient.setToken(window.localStorage.getItem("token"));

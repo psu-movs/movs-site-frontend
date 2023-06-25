@@ -1,6 +1,10 @@
 "use client";
 
-import { Box, IconButton, Stack, Typography } from "@mui/material";
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+
 import Image from "next/image";
 import DrawerMenu from "@/app/manager/DrawerMenu";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -19,7 +23,7 @@ const HeaderLink = ({ text, href }) => (
 const Menu = ({ direction }) => (
   <Stack direction={direction} spacing={3}>
     <HeaderLink text={"Новости"} href={"/news"} />
-    <HeaderLink text={"Абитуриентам"} href={"#"} />
+    <HeaderLink text={"Абитуриентам"} href={"/applicants"} />
     <HeaderLink text={"Научные работы"} href={"/science_works"} />
     <HeaderLink text={"Кафедра"} href={"/department"} />
   </Stack>

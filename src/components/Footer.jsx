@@ -1,6 +1,8 @@
 "use client";
 
-import { Container, Stack, Typography } from "@mui/material";
+import Container from "@mui/material/Container";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -17,11 +19,11 @@ export function Footer() {
         paddingLeft: "3%",
         paddingRight: "3%",
         paddingBottom: "2%",
-        marginTop: '2%'
+        marginTop: "2%",
       }}
     >
       <Stack
-        direction={isMobile ? 'column' : "row"}
+        direction={isMobile ? "column" : "row"}
         justifyContent="space-between"
         alignItems="center"
       >

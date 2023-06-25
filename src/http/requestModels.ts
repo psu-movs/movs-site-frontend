@@ -1,10 +1,9 @@
-import {Content} from './responseModels'
 
 export interface UpdateDepartmentInfo {
   phone?: string;
   email?: string;
   address?: string;
-  description?: Content[];
+  description?: string;
 }
 
 export interface AddDepartmentHead {

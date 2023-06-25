@@ -12,13 +12,14 @@ function EditDepartmentInfo({ data }: { data: DepartmentInfo }) {
   const [address, setAddress] = useState(data.address);
   const [phone, setPhone] = useState(data.phone);
   const [email, setEmail] = useState(data.email);
-  // const [description, setDescription] = useState();
+  const [description, setDescription] = useState<string>(data.description);
 
   const saveInfo = async () => {
     await httpClient.updateDepartmentInfo({
       phone,
       email,
       address,
+      description
     });
 
     router.refresh();
@@ -51,19 +52,19 @@ function EditDepartmentInfo({ data }: { data: DepartmentInfo }) {
           onChange={(element) => setEmail(element.target.value)}
           value={email}
         />
-        {/*<TextField*/}
-        {/*  id="description"*/}
-        {/*  label="Описание"*/}
-        {/*  variant="outlined"*/}
-        {/*  multiline*/}
-        {/*  sx={{ backgroundColor: "#FFFFFF" }}*/}
-        {/*  onChange={(element) => setDescription(element.target.value)}*/}
-        {/*  value={description}*/}
-        {/*/>*/}
+        <TextField
+          id="description"
+          label="Описание"
+          variant="outlined"
+          multiline
+          sx={{ backgroundColor: "#FFFFFF" }}
+          onChange={(element) => setDescription(element.target.value)}
+          value={description}
+        />
 
         <Button
           onClick={saveInfo}
-          disabled={!phone || !address || !email}
+          disabled={!phone || !address || !email || !description}
           variant="contained"
         >
           Сохранить

@@ -1,7 +1,7 @@
 "use client";
 
 import { Stack, Typography, Container } from "@mui/material";
-import { ClientUser } from "@/http/responseModels";
+import { User } from "@/http/responseModels";
 import {
   hasManageInfoPermission,
   hasManageNewsPermission,
@@ -29,7 +29,7 @@ function Menu({
   direction,
   textVariant,
 }: {
-  user: ClientUser;
+  user: User;
   direction?: "row";
   textVariant: TypographyProps["variant"];
 }) {
@@ -74,7 +74,7 @@ function Menu({
   );
 }
 
-export default function ControlPanel({ user }: { user: ClientUser }) {
+export default function ControlPanel({ user }: { user: User }) {
   const isTablet = useMediaQuery("(max-width:960px)");
 
   if (isTablet) {
