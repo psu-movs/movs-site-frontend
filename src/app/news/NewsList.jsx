@@ -23,9 +23,9 @@ export default function NewsList({news}) {
     >
       <Grid container spacing={isPhone ? 2 : 3} columns={gridColumns}>
         {news.map(article => (
-          <Grid item xs={3} key={article}>
+          <Grid item xs={3} key={article._id}>
             <Link href={`/news/${article._id}`} style={{textDecoration: 'none'}}>
-              <ArticleBlock key={article} article={article}/>
+              <ArticleBlock article={article}/>
             </Link>
           </Grid>
         ))}
