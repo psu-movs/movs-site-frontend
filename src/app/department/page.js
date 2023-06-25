@@ -13,3 +13,5 @@ export default async function DepartmentPage() {
     </main>
   );
 }
+
+export const revalidate = 0;

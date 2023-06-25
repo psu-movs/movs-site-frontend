@@ -14,3 +14,5 @@ export default async function NewsPage() {
     </main>
   );
 }
+
+export const revalidate = 0;
