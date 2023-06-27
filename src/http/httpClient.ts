@@ -126,6 +126,10 @@ export default class HTTPClient {
     return await this.request("GET", "/users/me");
   }
 
+  async getUser(userID: string): Promise<User> {
+    return await this.request("GET", `/users/${userID}`);
+  }
+
   async getDepartmentInfo(): Promise<DepartmentInfo> {
     return await this.request("GET", "/department");
   }

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import httpClient from "@/http";
-import { Article, UserPermissions } from "@/http/responseModels";
+import { Article, User, UserPermissions } from "@/http/responseModels";
 import {
   Box,
   Button,
@@ -27,12 +27,17 @@ function ArticleCard({
   onDelete(article: Article): Promise<void>;
 }) {
   const router = useRouter();
+  const [author, setAuthor] = useState<User>();
+
+  useEffect(() => {
+    httpClient.getUser(article.author_id).then(user => setAuthor(user));
+  })
 
   return (
     <Card sx={{ padding: "1%" }}>
       <Stack direction={"row"} sx={{ justifyContent: "space-between" }}>
         <Typography>{article.creation_date}</Typography>
-        <Typography>{article.author_id}</Typography>
+        <Typography>{author?.username}</Typography>
       </Stack>
       <Stack direction={"row"} sx={{ justifyContent: "space-between" }}>
         <Typography variant={"h6"}>
