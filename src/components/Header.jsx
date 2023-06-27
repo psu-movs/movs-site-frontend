@@ -4,6 +4,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
+import Container from '@mui/material/Container';
 
 import Image from "next/image";
 import DrawerMenu from "@/app/manager/DrawerMenu";
@@ -34,9 +35,9 @@ const HeaderMenu = ({ drawer }) => {
 
   return (
     <DrawerMenu>
-      <Box sx={{ marginTop: "10%" }}>
+      <Container sx={{ marginTop: "10%" }}>
         <Menu direction={"column"} />
-      </Box>
+      </Container>
     </DrawerMenu>
   );
 };
