@@ -63,8 +63,8 @@ export default function Applicants({ companies }: ApplicantsProps) {
         columns={gridColumns}
       >
         {companies.map((company) => (
-          <Grid item xs={3}>
-            <CompanyBlock key={company._id} company={company} />
+          <Grid item xs={3} key={company._id}>
+            <CompanyBlock company={company} />
           </Grid>
         ))}
       </Grid>

@@ -1,7 +1,7 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import News from "@/components/news/News";
-import VocationalTest from "@/components/VocationalTest";
+import VocationalTestPreview from "@/components/VocationalTestPreview";
 import httpClient from "@/http";
 
 export default async function Home() {
@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <main>
       <Header />
-      <VocationalTest />
+      <VocationalTestPreview />
       {news.length !== 0 && <News news={news}/>}
       <Footer />
     </main>

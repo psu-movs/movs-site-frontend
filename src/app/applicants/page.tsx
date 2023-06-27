@@ -4,6 +4,7 @@ import httpClient from "@/http";
 import Applicants from "./Applicants";
 import EntryInfo from "@/app/applicants/EntryInfo";
 import Documents from "@/app/applicants/Documents";
+import VocationalTest from "@/app/applicants/VocationalTest";
 
 export default async function ApplicantsPage() {
   const companies = await httpClient.getApplicantsCompanies();
@@ -13,6 +14,7 @@ export default async function ApplicantsPage() {
     <main>
       <Header />
       <Applicants companies={companies} />
+      <VocationalTest />
       <EntryInfo info={entryInfo.entry_start_date_info}/>
       <Documents info={entryInfo.documents}/>
       <Footer />
