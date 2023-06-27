@@ -20,10 +20,7 @@ const ContactInformation = ({ data }: ContactInformationProps) => {
       </Typography>
       <Stack direction={"row"} spacing={1}>
         <Typography sx={{ color: "494949", fontWeight: "medium" }}>
-          Электронная почта:{" "}
-          <Link href={"/"} underline="none">
-            {data.email}
-          </Link>
+          Электронная почта: {data.email}
         </Typography>
       </Stack>
     </Stack>
