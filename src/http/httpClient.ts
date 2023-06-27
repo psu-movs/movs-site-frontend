@@ -288,4 +288,8 @@ export default class HTTPClient {
   async getAllUsers(): Promise<User[]> {
     return await this.request("GET", "/users")
   }
+
+  async getTeachers(): Promise<string> {
+    return await this.request("GET", "/teachers");
+  }
 }
