@@ -27,7 +27,7 @@ export default function Article({data}: ArticleProps) {
             <img src={data.thumbnail_url} width={isPhone ? "100%" : "60%"} alt={"Картинка статьи"}  loading={'lazy'}/>
           </Box>
         </Stack>
-        <Typography textAlign={"justify"} sx={{fontSize: isPhone ? 14 : 20, fontWeight: "medium", whiteSpace: 'pre-line'}}>
+        <Typography textAlign={"left"} sx={{fontSize: isPhone ? 14 : 20, fontWeight: "medium", whiteSpace: 'pre-line'}}>
           {data.description}
         </Typography>
       </Stack>

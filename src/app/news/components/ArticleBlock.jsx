@@ -16,7 +16,7 @@ const ArticleBlock = ({article}) =>  {
         '&:hover': {opacity: [0.8]}
       }}
     >
-      <img src={article.thumbnail_url} alt={"Картинка статьи"} loading={'lazy'}/>
+      <img src={article.thumbnail_url} alt={"Картинка статьи"} loading={'lazy'} style={{borderRadius: '4px'}}/>
 
       <Stack
         spacing={2}

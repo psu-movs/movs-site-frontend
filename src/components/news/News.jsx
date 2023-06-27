@@ -1,12 +1,14 @@
 "use client";
 
-import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import LatestArticle from "./LatestArticle";
 import Article from "./Article";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useEffect, useState } from "react";
+import ArticleBlock from "@/app/news/components/ArticleBlock";
+import Link from "next/link";
 
 export default function News({ news }) {
   const [gridColumns, setGridColumns] = useState(12);
@@ -19,26 +21,30 @@ export default function News({ news }) {
   }, []);
 
   return (
-    <Box
-      sx={{ marginLeft: "4%", marginTop: "1%", maxWidth: "100%" }}
-    >
-      <Typography
-        fontSize={isPhone ? 36 : 42}
-        fontWeight={"600"}
-        fontFamily={"montserrat"}
-      >
+    <Container maxWidth={"xl"} sx={{ marginTop: "1%" }}>
+      <Typography variant={"h4"} sx={{ marginBottom: "1%" }}>
         Новости
       </Typography>
 
       {!isTablet && <LatestArticle article={news[0]} />}
 
-      <Grid container spacing={1} columns={gridColumns} sx={!isTablet ? {marginTop: '2%'} : undefined}>
+      <Grid
+        container
+        spacing={1}
+        columns={gridColumns}
+        sx={!isTablet ? { marginTop: "2%" } : undefined}
+      >
         {news.slice(!isTablet ? 1 : 0).map((article) => (
           <Grid item xs={4} key={article._id}>
-            <Article article={article} />
+            <Link
+              href={`/news/${article._id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <ArticleBlock article={article} />
+            </Link>
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </Container>
   );
 }

@@ -42,12 +42,12 @@ export default function LatestArticle({ article }: { article: Article }) {
         direction={"row"}
         sx={{ "&:hover": { opacity: 0.8 } }}
       >
-        <Stack maxWidth={match ? "sm" : "md"}>
+        <Stack maxWidth={match ? "xs" : "sm"}>
           <img
             src={article.thumbnail_url}
-            alt={"raketa"}
+            alt={article._id}
             loading={"lazy"}
-            style={{ width: "auto", height: "100%" }}
+            style={{borderRadius: '4px'}}
           />
         </Stack>
         <ArticleInfo article={article} />
