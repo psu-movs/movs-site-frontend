@@ -8,14 +8,17 @@ import Image from "next/image";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CallIcon from "@mui/icons-material/Call";
 import EmailIcon from "@mui/icons-material/Email";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 interface HeadInformationProps {
   data: DepartmentHeadInfo;
 }
 
 const HeadInformation = ({ data }: HeadInformationProps) => {
+  const isPhone = useMediaQuery("(max-width:480px)");
+
   return (
-    <Stack direction={"row"} spacing={2}>
+    <Stack direction={isPhone ? "column" : "row"} spacing={2}>
       <Image
         src={data.photo_url}
         alt="Заведующий кафедры"
