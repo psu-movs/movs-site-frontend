@@ -32,9 +32,7 @@ function ScienceWorkCard({
     <Card sx={{ padding: "1%" }}>
       <Stack direction={"row"} sx={{ justifyContent: "space-between" }}>
         <Typography variant={"h6"}>
-          <Link href={`/news/${scienceWork._id}`} underline={"none"}>
-            {scienceWork.title}
-          </Link>
+          {scienceWork.title}
         </Typography>
 
         <Stack direction={"row"}>
@@ -61,7 +59,7 @@ export default function ScienceWorksContainer() {
   const [scienceWorks, setScienceWorks] = useState<ScienceWork[]>([]);
 
   const deleteScienceWork = async (deleted: ScienceWork) => {
-    await httpClient.deleteArticle(deleted._id);
+    await httpClient.deleteScienceWork(deleted._id);
 
     setScienceWorks(
       scienceWorks.filter((scienceWork) => scienceWork._id !== deleted._id)
