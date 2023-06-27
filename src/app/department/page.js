@@ -1,6 +1,7 @@
 import httpClient from "@/http";
 import Department from "./Department";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 export default async function DepartmentPage() {
   const data = await httpClient.getDepartmentInfo()
@@ -10,6 +11,7 @@ export default async function DepartmentPage() {
     <main>
       <Header />
       <Department data={data} head={head}/>
+      <Footer />
     </main>
   );
 }
