@@ -156,7 +156,7 @@ export default function VocationalTest() {
         <ResultBox results={answersRef.current} />
       )}
 
-      <Box display={"flex"} justifyContent={"center"}>
+      <Box display={"flex"} justifyContent={"center"} sx={{marginTop: '3%'}}>
         <Divider
           sx={{ width: "60%", border: "1px solid #2148C0", opacity: "75%" }}
         />

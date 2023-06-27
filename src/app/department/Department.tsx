@@ -52,7 +52,7 @@ const Department = ({data, head}: DepartmentProps) => {
           <HeadInformation data={head} />
         </Box>
 
-        <Box>
+        <Box paddingTop={'2%'}>
           <Typography variant={"h6"}>
             О кафедре
           </Typography>

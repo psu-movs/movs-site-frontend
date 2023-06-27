@@ -12,15 +12,17 @@ import DrawerMenu from "@/app/manager/DrawerMenu";
 import { TypographyProps } from "@mui/material/Typography";
 import Link from "next/link";
 
-const HeaderLink = ({ text, href, textVariant }: {
+const HeaderLink = ({
+  text,
+  href,
+  textVariant,
+}: {
   text: string;
   href: string;
   textVariant: TypographyProps["variant"];
 }) => (
-  <Link href={href} style={{textDecoration: "none", color: '#2148C0'}}>
-    <Typography variant={textVariant}>
-      {text}
-    </Typography>
+  <Link href={href} style={{ textDecoration: "none", color: "#2148C0" }}>
+    <Typography variant={textVariant}>{text}</Typography>
   </Link>
 );
 
@@ -35,15 +37,17 @@ function Menu({
 }) {
   return (
     <Stack spacing={2} direction={direction} sx={{ justifyContent: "center" }}>
-      {hasManageNewsPermission(user) && (
+      {hasManageNewsPermission(user) ? (
         <HeaderLink
           text="Новости"
           href={"/manager?active=news"}
           textVariant={textVariant}
         />
+      ) : (
+        <></>
       )}
 
-      {hasManageInfoPermission(user) && (
+      {hasManageInfoPermission(user) ? (
         <>
           <HeaderLink
             text="Кафедра"
@@ -61,14 +65,18 @@ function Menu({
             textVariant={textVariant}
           />
         </>
+      ) : (
+        <></>
       )}
 
-      {isAdmin(user) && (
+      {isAdmin(user) ? (
         <HeaderLink
           text="Пользователи"
           href={"/manager?active=users"}
           textVariant={textVariant}
         />
+      ) : (
+        <></>
       )}
     </Stack>
   );
