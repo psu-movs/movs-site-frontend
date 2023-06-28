@@ -4,7 +4,6 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import LatestArticle from "./LatestArticle";
-import Article from "./Article";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useEffect, useState } from "react";
 import ArticleBlock from "@/app/news/components/ArticleBlock";
@@ -18,7 +17,7 @@ export default function News({ news }) {
   useEffect(() => {
     if (isPhone) setGridColumns(4);
     else if (isTablet) setGridColumns(8);
-  }, []);
+  }, [isPhone, isTablet]);
 
   return (
     <Container maxWidth={"xl"} sx={{ marginTop: "1%" }}>
